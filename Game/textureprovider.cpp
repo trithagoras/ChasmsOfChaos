@@ -3,12 +3,12 @@
 #include <format>
 #include <optional>
 
-TextureProvider& TextureProvider::getInstance() {
+TextureProvider& TextureProvider::get_instance() {
 	static TextureProvider instance;
 	return instance;
 }
 
-sf::Texture& TextureProvider::loadTexture(const std::string& name) {
+sf::Texture& TextureProvider::load_texture(const std::string& name) {
 	auto texture = std::make_unique<sf::Texture>();
 	if (!texture->loadFromFile(std::format("Content/{}", name))) {
 		std::cerr << "Failed to load texture" << std::endl;
@@ -18,7 +18,7 @@ sf::Texture& TextureProvider::loadTexture(const std::string& name) {
 	return *this->textures[name];
 }
 
-const sf::Texture& TextureProvider::getTexture(const std::string& name) {
+const sf::Texture& TextureProvider::get_texture(const std::string& name) {
 	auto& texture = this->textures[name];
 	if (texture) {
 		return *this->textures[name];

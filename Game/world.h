@@ -11,5 +11,5 @@ public:
 	void init();
 	void update(sf::Event& event);
 	void draw(sf::RenderWindow& window);
-	void place_object_in_world(std::unique_ptr<GameObject> gameobject, sf::Vector2i position);
+	void spawn_in_world(std::unique_ptr<GameObject> gameobject, sf::Vector2i position);
 };

@@ -137,20 +137,18 @@
   <ItemGroup>
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameobject.cpp" />
+    <ClCompile Include="gameobjectfactory.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="textureprovider.cpp" />
     <ClCompile Include="world.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="gamecolors.h" />
     <ClInclude Include="gameobject.h" />
+    <ClInclude Include="gameobjectfactory.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="textureprovider.h" />
     <ClInclude Include="world.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\Chasms\App\Content\Art\game-tiles.png">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

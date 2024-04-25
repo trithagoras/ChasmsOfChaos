@@ -18,7 +18,7 @@ void World::draw(sf::RenderWindow& window) {
 	}
 }
 
-void World::place_object_in_world(std::unique_ptr<GameObject> gameobject, sf::Vector2i position) {
+void World::spawn_in_world(std::unique_ptr<GameObject> gameobject, sf::Vector2i position) {
 	gameobject->set_position(position);
 	this->gameobjects.push_back(std::move(gameobject));
 }
