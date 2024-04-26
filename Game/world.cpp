@@ -1,6 +1,8 @@
 #include "world.h"
 
 void World::init() {
+	// create and init first floor of dungeon
+
 	for (auto& gameobject : this->gameobjects) {
 		(*gameobject).init();
 	}

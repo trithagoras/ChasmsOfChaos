@@ -1,0 +1,11 @@
+[
+  {
+    "name": "player",
+    "color": "0xD2B48CFF",
+    "textureName": "game-tiles.png",
+    "x": 448,
+    "y": 16,
+    "width": 16,
+    "height": 16
+  }
+]

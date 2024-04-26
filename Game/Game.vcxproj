@@ -135,6 +135,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="contentprovider.cpp" />
+    <ClCompile Include="floor.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="gameobjectfactory.cpp" />
@@ -143,12 +145,25 @@
     <ClCompile Include="world.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="contentprovider.h" />
+    <ClInclude Include="floor.h" />
     <ClInclude Include="gamecolors.h" />
     <ClInclude Include="gameobject.h" />
     <ClInclude Include="gameobjectfactory.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="textureprovider.h" />
+    <ClInclude Include="utils.h" />
     <ClInclude Include="world.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Content\game-tiles.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\sprites.json">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

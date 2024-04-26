@@ -7,17 +7,17 @@
 #include <libtcod.hpp>
 #include "gameobjectfactory.h"
 #include "gamecolors.h"
+#include "contentprovider.h"
 
 void init(World& world);
-void update(World& world, sf::RenderWindow& window, sf::Event& event);
+void update(World& world, sf::Event& event);
 void draw(World& world, sf::RenderWindow& window);
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Legends of Kordonis I: Into the Chasms of Chaos");
     window.setFramerateLimit(60);
     World world{};
     init(world);
-    draw(world, window);
 
     while (window.isOpen()) {
         sf::Event event;
@@ -25,25 +25,26 @@ int main() {
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
-            else if (event.type == sf::Event::KeyPressed) {
-                update(world, window, event);   // only updates on key press including redraws... probably a bad idea
+            if (event.type == sf::Event::KeyPressed) {
+                update(world, event);
             }
         }
+        draw(world, window);
     }
     return 0;
 }
 
 void init(World& world) {
+    ContentProvider::get_instance().load_sprites();
     auto& gameTexture = TextureProvider::get_instance().load_texture("game-tiles.png");
     auto player = GameObjectFactory::get_instance().create_player();
     world.spawn_in_world(std::move(player), sf::Vector2i(16, 16));
     world.init();
 }
 
-void update(World& world, sf::RenderWindow& window, sf::Event& event) {
+void update(World& world, sf::Event& event) {
     std::cout << "update" << std::endl;
     world.update(event);
-    draw(world, window);
 }
 
 void draw(World& world, sf::RenderWindow& window) {
