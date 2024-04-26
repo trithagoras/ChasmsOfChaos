@@ -29,19 +29,22 @@ int main() {
             }
             if (event.type == sf::Event::KeyPressed) {
                 // TODO: DEBUG CODE
+                // =======================================================
                 if (event.key.code == sf::Keyboard::R) {
                     world = World{};
                     world.init();
                     continue;
                 }
-                if (event.key.code == sf::Keyboard::F) {
+                else if (event.key.code == sf::Keyboard::F) {
                     debugFullScreen = !debugFullScreen;
                     if (debugFullScreen) {
                         window.setView(window.getDefaultView());
                     } else {
                         window.setView(sf::View(sf::FloatRect(0, 0, 320, 240)));
                     }
+                    continue;
                 }
+                // =======================================================
                 update(world, event);
             }
         }

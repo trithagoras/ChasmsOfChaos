@@ -1,6 +1,7 @@
 #pragma once
 #include "player.h"
 #include <memory>
+#include "item.h"
 
 class GameObjectFactory {
 public:

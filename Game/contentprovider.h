@@ -17,6 +17,7 @@ class ContentProvider {
 
 public:
 	static ContentProvider& get_instance();
+	void load_all_content();
 	void load_sprites();
 	const sf::Sprite& get_sprite(const std::string& name);
 	void load_textures();

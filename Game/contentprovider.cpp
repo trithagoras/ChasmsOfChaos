@@ -16,6 +16,12 @@ const sf::Sprite& ContentProvider::get_sprite(const std::string& name) {
 	throw new std::runtime_error(std::format("Sprite does not exist or is not loaded: {}", name));
 }
 
+void ContentProvider::load_all_content() {
+	load_sprites();
+	load_textures();
+	//load_items();
+}
+
 void ContentProvider::load_sprites() {
 	// Open the JSON file
 	std::ifstream file("Content/sprites.json");

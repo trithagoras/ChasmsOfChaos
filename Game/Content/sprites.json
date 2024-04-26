@@ -16,5 +16,14 @@
     "y": 272,
     "width": 16,
     "height": 16
+  },
+  {
+    "name": "gold coin",
+    "color": "0xF4B41BFF",
+    "textureName": "game-tiles.png",
+    "x": 656,
+    "y": 64,
+    "width": 16,
+    "height": 16
   }
 ]
