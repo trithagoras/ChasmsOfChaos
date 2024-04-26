@@ -51,8 +51,7 @@ void Floor::init() {
 		for (auto col = 0; col < width; col++) {
 			if (!map->isWalkable(col, row)) {
 				auto floorObj = objectFactory.create_wall();
-				floorObj->set_position(col, row);
-				gameobjects.push_back(std::move(floorObj));
+				spawn_object(std::move(floorObj), col, row);
 			}
 		}
 	}
@@ -69,7 +68,12 @@ void Floor::draw(sf::RenderWindow& window) {
 }
 
 void Floor::spawn_object(std::unique_ptr<GameObject> gameobject, sf::Vector2i position) {
-	gameobject->set_position(position);
+	spawn_object(std::move(gameobject), position.x, position.y);
+}
+
+void Floor::spawn_object(std::unique_ptr<GameObject> gameobject, int x, int y) {
+	gameobject->set_position(x, y);
+	gameobject->set_floor(this);
 	this->gameobjects.push_back(std::move(gameobject));
 }
 

@@ -1,4 +1,5 @@
 #include "gameobject.h"
+#include "floor.h"
 
 void GameObject::init() {
 
@@ -14,10 +15,12 @@ void GameObject::draw(sf::RenderWindow& window) {
 }
 
 void GameObject::translate(sf::Vector2i dpos) {
-	this->position += dpos;
+	this->translate(dpos.x, dpos.y);
 }
 
 void GameObject::translate(int dx, int dy) {
-	this->position.x += dx;
-	this->position.y += dy;
+	auto newPos = sf::Vector2i(dx, dy) + position;
+	if (this->floor->walkable(newPos)) {
+		this->position = newPos;
+	}
 }

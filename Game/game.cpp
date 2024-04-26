@@ -15,6 +15,8 @@ void draw(World& world, sf::RenderWindow& window);
 int main() {
     sf::RenderWindow window(sf::VideoMode(960, 720), "Legends of Kordonis I: Into the Chasms of Chaos");
     window.setFramerateLimit(60);
+    window.setView(sf::View(sf::FloatRect(0, 0, 320, 240)));
+
     World world{};
     init(world, window);
 
@@ -37,14 +39,7 @@ void init(World& world, sf::RenderWindow& window) {
     auto& cp = ContentProvider::get_instance();
     cp.load_textures();
     cp.load_sprites();     // ensure you load all textures BEFORE loading sprites
-    auto player = GameObjectFactory::get_instance().create_player();
-    player->set_position(32, 32);
-
-    sf::View view(sf::FloatRect((sf::Vector2f)player->get_position(), sf::Vector2f(320, 240)));
-    window.setView(view);
-
     world.init();
-    world.get_current_floor().spawn_object(std::move(player), sf::Vector2i(11, 9));
 }
 
 void update(World& world, sf::Event& event) {

@@ -2,10 +2,14 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics.hpp>
 
+class Floor;	// forward decl
+
 class GameObject {
 protected:
 	std::unique_ptr<sf::Sprite> sprite;	// TODO: this isn't guaranteed initialized
 	sf::Vector2i position;
+	Floor* floor;
+
 public:
 	GameObject() = default;
 	virtual ~GameObject() = default;
@@ -20,6 +24,9 @@ public:
 	}
 	void set_sprite(std::unique_ptr<sf::Sprite> sprite) {
 		this->sprite = std::move(sprite);
+	}
+	void set_floor(Floor* floor) {
+		this->floor = floor;
 	}
 	void translate(sf::Vector2i dpos);
 	void translate(int dx, int dy);

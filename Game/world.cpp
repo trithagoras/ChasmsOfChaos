@@ -1,4 +1,5 @@
 #include "world.h"
+#include "gameobjectfactory.h"
 
 void World::init() {
 	// init all floors in dungeon
@@ -6,6 +7,9 @@ void World::init() {
 		floors[i] = std::make_unique<Floor>(50, 50);	// TODO: make width/height a random range
 		floors[i]->init();
 	}
+
+	auto player = GameObjectFactory::get_instance().create_player();
+	get_current_floor().spawn_object(std::move(player), 32, 32);
 }
 
 void World::update(sf::Event& event) {

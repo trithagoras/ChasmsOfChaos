@@ -11,7 +11,6 @@ GameObjectFactory& GameObjectFactory::get_instance() {
 std::unique_ptr<Player> GameObjectFactory::create_player() {
     auto player = std::make_unique<Player>();
     auto sprite = std::make_unique<sf::Sprite>(SpriteFactory::get_instance().create_sprite("player"));
-    //sprite->setPosition((sf::Vector2f)player->get_position());  // x 16?
     player->set_sprite(std::move(sprite));
     return player;
 }
