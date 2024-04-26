@@ -1,5 +1,4 @@
 #include "gameobjectfactory.h"
-#include "textureprovider.h"
 #include "gamecolors.h"
 #include "spritefactory.h"
 #include "utils.h"

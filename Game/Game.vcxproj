@@ -142,7 +142,6 @@
     <ClCompile Include="gameobjectfactory.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="spritefactory.cpp" />
-    <ClCompile Include="textureprovider.cpp" />
     <ClCompile Include="world.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,7 +152,6 @@
     <ClInclude Include="gameobjectfactory.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="spritefactory.h" />
-    <ClInclude Include="textureprovider.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="world.h" />
   </ItemGroup>

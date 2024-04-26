@@ -1,6 +1,5 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "textureprovider.h"
 #include "world.h"
 #include <memory>
 #include "player.h"
@@ -35,10 +34,9 @@ int main() {
 }
 
 void init(World& world) {
-    auto& gameTexture = TextureProvider::get_instance().load_texture("game-tiles.png");
-
-    // ensure you load all textures BEFORE loading sprites
-    ContentProvider::get_instance().load_sprites();
+    auto& cp = ContentProvider::get_instance();
+    cp.load_textures();
+    cp.load_sprites();     // ensure you load all textures BEFORE loading sprites
     auto player = GameObjectFactory::get_instance().create_player();
     world.spawn_in_world(std::move(player), sf::Vector2i(16, 16));
     world.init();
