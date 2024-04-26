@@ -35,15 +35,16 @@ int main() {
 }
 
 void init(World& world) {
-    ContentProvider::get_instance().load_sprites();
     auto& gameTexture = TextureProvider::get_instance().load_texture("game-tiles.png");
+
+    // ensure you load all textures BEFORE loading sprites
+    ContentProvider::get_instance().load_sprites();
     auto player = GameObjectFactory::get_instance().create_player();
     world.spawn_in_world(std::move(player), sf::Vector2i(16, 16));
     world.init();
 }
 
 void update(World& world, sf::Event& event) {
-    std::cout << "update" << std::endl;
     world.update(event);
 }
 
