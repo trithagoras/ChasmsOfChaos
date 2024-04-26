@@ -1,5 +1,7 @@
 #include "world.h"
 #include "gameobjectfactory.h"
+#include <libtcod.hpp>
+#include <iostream>
 
 void World::init() {
 	// init all floors in dungeon
@@ -9,7 +11,14 @@ void World::init() {
 	}
 
 	auto player = GameObjectFactory::get_instance().create_player();
-	get_current_floor().spawn_object(std::move(player), 32, 32);
+	auto rng = TCODRandom();
+	auto pref = &(*player);
+	get_current_floor().spawn_object(std::move(player), rng.getInt(1, 48), rng.getInt(1, 48));
+
+	while (!get_current_floor().walkable(pref->get_position())) {
+		std::cout << "Player position was not in bounds. Retrying." << std::endl;
+		pref->set_position(rng.getInt(1, 48), rng.getInt(1, 48));
+	}
 }
 
 void World::update(sf::Event& event) {
