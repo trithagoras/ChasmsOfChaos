@@ -6,19 +6,19 @@
 void World::init() {
 	// init all floors in dungeon
 	for (auto i = 0; i < floorCount; i++) {
-		floors[i] = std::make_unique<Floor>(50, 50);	// TODO: make width/height a random range
+		floors[i] = std::make_unique<Floor>(50, 50);
 		floors[i]->init();
 	}
 
-	auto player = GameObjectFactory::get_instance().create_player();
 	auto rng = TCODRandom();
-	auto pref = &(*player);
-	get_current_floor().spawn_object(std::move(player), rng.getInt(1, 48), rng.getInt(1, 48));
-
-	while (!get_current_floor().walkable(pref->get_position())) {
+	sf::Vector2i pos(rng.getInt(1, 48), rng.getInt(1, 48));
+	while (!get_current_floor().walkable(pos)) {
 		std::cout << "Player position was not in bounds. Retrying." << std::endl;
-		pref->set_position(rng.getInt(1, 48), rng.getInt(1, 48));
+		pos = sf::Vector2i(rng.getInt(1, 48), rng.getInt(1, 48));
 	}
+
+	auto player = GameObjectFactory::get_instance().create_player();
+	get_current_floor().spawn_object(std::move(player), pos);
 }
 
 void World::update(sf::Event& event) {
