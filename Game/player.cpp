@@ -1,4 +1,5 @@
 #include "player.h"
+#include "gameobject.h"
 
 void Player::init() {
 
@@ -23,13 +24,13 @@ void Player::update(sf::Event& event) {
             break;
         }
     }
-    this->translate(dx, dy);
+    this->gameobject.translate(dx, dy);
 }
 
 void Player::draw(sf::RenderWindow& window) {
     sf::View view = window.getView();
-    auto [x, y] = get_position();
+    auto [x, y] = this->gameobject.get_position();
     view.setCenter(x * 16, y * 16);
     window.setView(view);
-    GameObject::draw(window);
+    //this->gameobject.draw(window);
 }

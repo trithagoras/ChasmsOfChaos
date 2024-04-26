@@ -68,6 +68,12 @@
     <ClInclude Include="spritefactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="item.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Content\game-tiles.png">
@@ -76,5 +82,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\sprites.json" />
+    <None Include="Content\items.json" />
   </ItemGroup>
 </Project>

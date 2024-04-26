@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics.hpp>
+#include <vector>
+#include "component.h"
 
 class Floor;	// forward decl
 
@@ -9,6 +11,7 @@ protected:
 	std::unique_ptr<sf::Sprite> sprite;	// TODO: this isn't guaranteed initialized
 	sf::Vector2i position;
 	Floor* floor;
+	std::vector<std::unique_ptr<Component>> components;
 
 public:
 	GameObject() = default;
@@ -33,4 +36,36 @@ public:
 	virtual void init();
 	virtual void update(sf::Event& event);
 	virtual void draw(sf::RenderWindow& window);
+
+	// have to define template methods in .h file
+	template <typename T>
+	T& add_component() {
+		static_assert(std::is_base_of<Component, T>::value, "T must be a Component");
+
+		// if component already exists, return it
+		for (auto& component : components) {
+			if (typeid(*component) == typeid(T)) {
+				return *dynamic_cast<T*>(component.get());
+			}
+		}
+
+		// otherwise, create new component, add it, and return it
+		auto component = std::make_unique<T>(*this);
+		T* result = component.get();
+		components.push_back(std::move(component));
+		return *result;
+	}
+
+	template <typename T>
+	T* get_component() const {
+		static_assert(std::is_base_of<Component, T>::value, "T must be a Component");
+
+		for (const auto& component : components) {
+			T* cast = dynamic_cast<T*>(component.get());
+			if (cast) {
+				return cast;
+			}
+		}
+		return nullptr;  // nullptr if no component found
+	}
 };

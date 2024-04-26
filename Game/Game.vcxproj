@@ -145,11 +145,13 @@
     <ClCompile Include="world.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="component.h" />
     <ClInclude Include="contentprovider.h" />
     <ClInclude Include="floor.h" />
     <ClInclude Include="gamecolors.h" />
     <ClInclude Include="gameobject.h" />
     <ClInclude Include="gameobjectfactory.h" />
+    <ClInclude Include="item.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="spritefactory.h" />
     <ClInclude Include="utils.h" />
@@ -161,6 +163,9 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\items.json">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
     <None Include="Content\sprites.json">
       <DeploymentContent>true</DeploymentContent>
     </None>
