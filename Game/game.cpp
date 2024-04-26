@@ -27,6 +27,12 @@ int main() {
                 window.close();
             }
             if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::R) {
+                    // TODO: DEBUG CODE
+                    world = World{};
+                    world.init();
+                    continue;
+                }
                 update(world, event);
             }
         }
