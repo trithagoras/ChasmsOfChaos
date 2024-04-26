@@ -25,3 +25,11 @@ void Player::update(sf::Event& event) {
     }
     this->translate(dx, dy);
 }
+
+void Player::draw(sf::RenderWindow& window) {
+    sf::View view = window.getView();
+    auto [x, y] = get_position();
+    view.setCenter(x * 16, y * 16);
+    window.setView(view);
+    GameObject::draw(window);
+}
