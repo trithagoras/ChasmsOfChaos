@@ -1,26 +1,18 @@
 #include "world.h"
 
 void World::init() {
-	// create and init first floor of dungeon
-
-	for (auto& gameobject : this->gameobjects) {
-		(*gameobject).init();
+	// init all floors in dungeon
+	for (auto i = 0; i < floorCount; i++) {
+		floors[i] = std::make_unique<Floor>(30, 30);	// TODO: make width/height a random range
+		floors[i]->init();
 	}
 }
 
 void World::update(sf::Event& event) {
-	for (auto& gameobject : this->gameobjects) {
-		(*gameobject).update(event);
-	}
+	floors[0]->update(event);
 }
 
 void World::draw(sf::RenderWindow& window) {
-	for (auto& gameobject : this->gameobjects) {
-		(*gameobject).draw(window);
-	}
+	floors[0]->draw(window);
 }
 
-void World::spawn_in_world(std::unique_ptr<GameObject> gameobject, sf::Vector2i position) {
-	gameobject->set_position(position);
-	this->gameobjects.push_back(std::move(gameobject));
-}

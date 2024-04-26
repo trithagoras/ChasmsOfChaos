@@ -1,7 +1,15 @@
 #include "gameobject.h"
 
+void GameObject::init() {
+
+}
+void GameObject::update(sf::Event& event) {
+
+}
+
 void GameObject::draw(sf::RenderWindow& window) {
-	this->sprite->setPosition((sf::Vector2f)this->get_position());
+	auto [x, y] = get_position();
+	this->sprite->setPosition(x * 16, y * 16);
 	window.draw(*this->sprite);
 }
 

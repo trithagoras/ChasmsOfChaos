@@ -3,13 +3,20 @@
 #include "gameobject.h"
 #include <memory>
 #include <SFML/Window/Event.hpp>
+#include "floor.h"
+#include <array>
+
+constexpr int floorCount = 20;
 
 class World {
-	std::vector<std::unique_ptr<GameObject>> gameobjects;
+	std::array<std::unique_ptr<Floor>, floorCount> floors;
+	int current_floor;
 
 public:
 	void init();
 	void update(sf::Event& event);
 	void draw(sf::RenderWindow& window);
-	void spawn_in_world(std::unique_ptr<GameObject> gameobject, sf::Vector2i position);
+	Floor& get_current_floor() {
+		return *floors[0];
+	}
 };

@@ -9,17 +9,17 @@ void Player::update(sf::Event& event) {
     auto dy = 0;
     if (event.type == sf::Event::KeyPressed) {
         switch (event.key.code) {
-        case sf::Keyboard::W:
-            dy = -16;
+        case sf::Keyboard::Up:
+            dy = -1;
             break;
-        case sf::Keyboard::A:
-            dx = -16;
+        case sf::Keyboard::Left:
+            dx = -1;
             break;
-        case sf::Keyboard::S:
-            dy = 16;
+        case sf::Keyboard::Down:
+            dy = 1;
             break;
-        case sf::Keyboard::D:
-            dx = 16;
+        case sf::Keyboard::Right:
+            dx = 1;
             break;
         }
     }
