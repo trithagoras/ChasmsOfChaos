@@ -10,7 +10,8 @@ class Floor {
 	std::unique_ptr<TCODMap> map;
 	std::vector<std::unique_ptr<GameObject>> gameobjects;
 	std::vector<std::pair<int, int>> roomCenters;
-	void drawCorridor(TCODMap* map, std::pair<int, int> start, std::pair<int, int> end);
+	void drawCorridor(TCODMap& map, std::pair<int, int> start, std::pair<int, int> end);
+	sf::RectangleShape floorShape;
 public:
 	Floor(int width, int height);
 	void init();

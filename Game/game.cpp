@@ -53,7 +53,7 @@ void update(World& world, sf::Event& event) {
 }
 
 void draw(World& world, sf::RenderWindow& window) {
-    window.clear(DARKMAROON);
+    window.clear(sf::Color::Black);
     world.draw(window);
     window.display();
 }

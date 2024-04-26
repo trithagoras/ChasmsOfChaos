@@ -1,5 +1,6 @@
 #include "floor.h"
 #include "gameobjectfactory.h"
+#include "gamecolors.h"
 
 class MyCallback : public ITCODBspCallback {
 	std::vector<std::pair<int, int>>& roomCenters;
@@ -32,6 +33,8 @@ public:
 Floor::Floor(int width, int height) {
 	this->width = width;
 	this->height = height;
+	this->floorShape = sf::RectangleShape(sf::Vector2f(width * 16, height * 16));
+	this->floorShape.setFillColor(DARKMAROON);
 }
 
 void Floor::init() {
@@ -43,7 +46,7 @@ void Floor::init() {
 
 	// Connect rooms
 	for (size_t i = 0; i < roomCenters.size() - 1; ++i) {
-		drawCorridor(map.get(), roomCenters[i], roomCenters[i + 1]);
+		drawCorridor(*map, roomCenters[i], roomCenters[i + 1]);
 	}
 
 	auto& objectFactory = GameObjectFactory::get_instance();
@@ -62,6 +65,9 @@ void Floor::update(sf::Event& event) {
 	}
 }
 void Floor::draw(sf::RenderWindow& window) {
+	// draw floor color behind gameobjects
+	window.draw(floorShape);
+
 	for (auto& obj : gameobjects) {
 		obj->draw(window);
 	}
@@ -77,18 +83,18 @@ void Floor::spawn_object(std::unique_ptr<GameObject> gameobject, int x, int y) {
 	this->gameobjects.push_back(std::move(gameobject));
 }
 
-void Floor::drawCorridor(TCODMap* map, std::pair<int, int> start, std::pair<int, int> end) {
+void Floor::drawCorridor(TCODMap& map, std::pair<int, int> start, std::pair<int, int> end) {
 	// Horizontal corridor
 	int min_x = std::min(start.first, end.first);
 	int max_x = std::max(start.first, end.first);
 	for (int x = min_x; x <= max_x; x++) {
-		map->setProperties(x, start.second, true, true);
+		map.setProperties(x, start.second, true, true);
 	}
 
 	// Vertical corridor
 	int min_y = std::min(start.second, end.second);
 	int max_y = std::max(start.second, end.second);
 	for (int y = min_y; y <= max_y; y++) {
-		map->setProperties(end.first, y, true, true);
+		map.setProperties(end.first, y, true, true);
 	}
 }
