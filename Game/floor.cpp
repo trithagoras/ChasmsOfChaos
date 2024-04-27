@@ -91,7 +91,15 @@ void Floor::init() {
 			}
 		}
 	}
+
+	// place up/down ladders randomly
+	auto& fac = GameObjectFactory::get_instance();
+	auto upladder = fac.create_ladder(false);
+	auto downladder = fac.create_ladder(true);
+	spawn_object_random(std::move(upladder));
+	spawn_object_random(std::move(downladder));
 }
+
 void Floor::update(sf::Event& event) {
 	for (auto& obj : gameobjects) {
 		obj->update(event);

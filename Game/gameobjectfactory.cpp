@@ -45,3 +45,16 @@ std::unique_ptr<GameObject> GameObjectFactory::create_random_item() {
     auto& item = ContentProvider::get_instance().get_random_item();
     return create_item(item.name);
 }
+
+std::unique_ptr<GameObject> GameObjectFactory::create_gameobject(const std::string& name, const std::string& spriteName) {
+    auto obj = std::make_unique<GameObject>();
+    auto sprite = std::make_unique<sf::Sprite>(SpriteFactory::get_instance().create_sprite(spriteName));
+    obj->set_name(name);
+    obj->set_sprite(std::move(sprite));
+    return obj;
+}
+
+std::unique_ptr<GameObject> GameObjectFactory::create_ladder(bool isDown) {
+    std::string s = isDown ? "down" : "up";
+    return create_gameobject(std::format("Ladder going {}", s), std::format("{} ladder", s));
+}

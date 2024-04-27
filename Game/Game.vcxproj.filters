@@ -95,6 +95,12 @@
     <ClInclude Include="canyon-6x5.h">
       <Filter>Header Files\rooms</Filter>
     </ClInclude>
+    <ClInclude Include="ladderc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="treasure-room-12x6.h">
+      <Filter>Header Files\rooms</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Content\game-tiles.png">
