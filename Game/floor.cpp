@@ -3,28 +3,43 @@
 #include "gamecolors.h"
 #include <libtcod.hpp>
 #include <iostream>
+#include "rooms.h"
 
 class MyCallback : public ITCODBspCallback {
 	std::vector<std::pair<int, int>>& roomCenters;
+
 public:
 	MyCallback(std::vector<std::pair<int, int>>& centers) : roomCenters(centers) {}
+
 	bool visitNode(TCODBsp* node, void* data) override {
 		auto map = static_cast<TCODMap*>(data);
 		if (node->isLeaf()) {
-			int room_x = node->x + 1;
-			int room_y = node->y + 1;
-			int room_width = node->w - 2;
-			int room_height = node->h - 2;
+			const auto& rooms = GameRoomProvider::get_instance().get_rooms();
+			std::vector<Room> suitableRooms;
 
-			if (room_width > 0 && room_height > 0) {
-				for (int x = room_x; x < room_x + room_width; x++) {
-					for (int y = room_y; y < room_y + room_height; y++) {
-						map->setProperties(x, y, true, true);
+			// filter rooms that fit into the current node
+			for (const auto& room : rooms) {
+				if (room.width <= node->w && room.height <= node->h) {
+					suitableRooms.push_back(room);
+				}
+			}
+
+			// randomly select a suitable room if any are available
+			if (!suitableRooms.empty()) {
+				int index = TCODRandom::getInstance()->getInt(0, suitableRooms.size() - 1);
+				const Room& selectedRoom = suitableRooms[index];
+
+				int room_x = node->x + (node->w - selectedRoom.width) / 2;
+				int room_y = node->y + (node->h - selectedRoom.height) / 2;
+
+				for (int y = 0; y < selectedRoom.height; y++) {
+					for (int x = 0; x < selectedRoom.width; x++) {
+						bool walkable = selectedRoom.layout[y][x] != ROOM_CONSTANTS::WALL;
+						map->setProperties(room_x + x, room_y + y, walkable, walkable);
 					}
 				}
-				int center_x = room_x + room_width / 2;
-				int center_y = room_y + room_height / 2;
-				roomCenters.push_back({ center_x, center_y });  // Store the center
+
+				roomCenters.push_back({ room_x + selectedRoom.width / 2, room_y + selectedRoom.height / 2 });
 			}
 		}
 		return true;
@@ -46,7 +61,7 @@ void Floor::init() {
 	auto pcallback = std::make_unique<MyCallback>(roomCenters);
 	bsp.traversePostOrder(pcallback.get(), map.get());
 
-	// Connect rooms
+	// connect rooms
 	for (size_t i = 0; i < roomCenters.size() - 1; ++i) {
 		drawCorridor(*map, roomCenters[i], roomCenters[i + 1]);
 	}

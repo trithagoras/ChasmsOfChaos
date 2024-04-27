@@ -13,12 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\rooms">
+      <UniqueIdentifier>{2f73fe29-8987-44a5-8ae8-a13981c20bf5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="world.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="gameobject.cpp">
@@ -40,6 +40,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="itemc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="world.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -79,6 +82,15 @@
     </ClInclude>
     <ClInclude Include="item.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jail-10x10.h">
+      <Filter>Header Files\rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="rooms.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="moat-12x16.h">
+      <Filter>Header Files\rooms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -7,6 +7,7 @@
 #include "gameobjectfactory.h"
 #include "gamecolors.h"
 #include "contentprovider.h"
+#include "rooms.h"
 
 void init(World& world, sf::RenderWindow& window);
 void update(World& world, sf::Event& event);
@@ -54,8 +55,8 @@ int main() {
 }
 
 void init(World& world, sf::RenderWindow& window) {
-    auto& cp = ContentProvider::get_instance();
-    cp.load_all_content();
+    ContentProvider::get_instance().load_all_content();
+    GameRoomProvider::get_instance().load_all_rooms();
     world.init();
 }
 

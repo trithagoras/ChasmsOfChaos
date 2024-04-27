@@ -154,7 +154,10 @@
     <ClInclude Include="gameobjectfactory.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="itemc.h" />
+    <ClInclude Include="jail-10x10.h" />
+    <ClInclude Include="moat-12x16.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="rooms.h" />
     <ClInclude Include="spritefactory.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="world.h" />
