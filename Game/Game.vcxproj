@@ -146,6 +146,7 @@
     <ClCompile Include="world.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="canyon-6x5.h" />
     <ClInclude Include="component.h" />
     <ClInclude Include="contentprovider.h" />
     <ClInclude Include="floor.h" />

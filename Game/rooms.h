@@ -3,6 +3,7 @@
 #include <vector>
 #include "jail-10x10.h"
 #include "moat-12x16.h"
+#include "canyon-6x5.h"
 
 enum ROOM_CONSTANTS {
 	WALL = 0x0,
@@ -32,6 +33,7 @@ public:
 	void load_all_rooms() {
 		add_room(Room(10, 10, jail_10x10));
 		add_room(Room(12, 16, moat_12x16));
+		add_room(Room(6, 5, canyon_6x5));
 	}
 
 	void add_room(const Room& room) {

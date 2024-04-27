@@ -92,6 +92,9 @@
     <ClInclude Include="moat-12x16.h">
       <Filter>Header Files\rooms</Filter>
     </ClInclude>
+    <ClInclude Include="canyon-6x5.h">
+      <Filter>Header Files\rooms</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Content\game-tiles.png">
