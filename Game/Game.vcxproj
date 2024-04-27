@@ -140,6 +140,7 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="gameobjectfactory.cpp" />
+    <ClCompile Include="itemc.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="spritefactory.cpp" />
     <ClCompile Include="world.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="gameobject.h" />
     <ClInclude Include="gameobjectfactory.h" />
     <ClInclude Include="item.h" />
+    <ClInclude Include="itemc.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="spritefactory.h" />
     <ClInclude Include="utils.h" />

@@ -10,15 +10,11 @@ void World::init() {
 		floors[i]->init();
 	}
 
-	auto rng = TCODRandom();
-	sf::Vector2i pos(rng.getInt(1, 48), rng.getInt(1, 48));
-	while (!get_current_floor().walkable(pos)) {
-		std::cout << "Player position was not in bounds. Retrying." << std::endl;
-		pos = sf::Vector2i(rng.getInt(1, 48), rng.getInt(1, 48));
+	get_current_floor().spawn_object_random(std::move(GameObjectFactory::get_instance().create_player()));
+	// just for fun, spawn a few items
+	for (int i = 0; i < 10; i++) {
+		get_current_floor().spawn_object_random(std::move(GameObjectFactory::get_instance().create_item("gold coin")));
 	}
-
-	auto player = GameObjectFactory::get_instance().create_player();
-	get_current_floor().spawn_object(std::move(player), pos);
 }
 
 void World::update(sf::Event& event) {

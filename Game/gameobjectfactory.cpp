@@ -3,6 +3,8 @@
 #include "spritefactory.h"
 #include "utils.h"
 #include "player.h"
+#include "contentprovider.h"
+#include "itemc.h"
 
 GameObjectFactory& GameObjectFactory::get_instance() {
 	static GameObjectFactory factory{};
@@ -22,4 +24,16 @@ std::unique_ptr<GameObject> GameObjectFactory::create_wall() {
     auto sprite = std::make_unique<sf::Sprite>(SpriteFactory::get_instance().create_sprite("wall"));
     wall->set_sprite(std::move(sprite));
     return wall;
+}
+
+std::unique_ptr<GameObject> GameObjectFactory::create_item(const std::string& name) {
+    auto obj = std::make_unique<GameObject>();
+    auto item = std::make_unique<Item>(ContentProvider::get_instance().get_item(name));
+    auto& comp = obj->add_component<ItemC>();
+
+    comp.set_item(std::move(item));
+    auto sprite = std::make_unique<sf::Sprite>(SpriteFactory::get_instance().create_sprite(comp.get_item().spriteName));
+    obj->set_sprite(std::move(sprite));
+
+    return obj;
 }

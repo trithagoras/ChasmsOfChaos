@@ -32,5 +32,4 @@ void Player::draw(sf::RenderWindow& window) {
     auto [x, y] = this->gameobject.get_position();
     view.setCenter(x * 16, y * 16);
     window.setView(view);
-    //this->gameobject.draw(window);
 }

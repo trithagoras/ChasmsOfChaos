@@ -8,4 +8,5 @@ public:
 	static GameObjectFactory& get_instance();
 	std::unique_ptr<GameObject> create_player();
 	std::unique_ptr<GameObject> create_wall();
+	std::unique_ptr<GameObject> create_item(const std::string& name);
 };

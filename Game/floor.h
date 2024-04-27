@@ -25,4 +25,10 @@ public:
 	bool walkable(sf::Vector2i pos) {
 		return walkable(pos.x, pos.y);
 	}
+
+	/// <summary>
+	/// Ensures the object is spawned on a walkable tile. i.e. not in a wall.
+	/// </summary>
+	/// <param name="gameobject"></param>
+	void spawn_object_random(std::unique_ptr<GameObject> gameobject);
 };

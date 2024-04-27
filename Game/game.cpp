@@ -55,8 +55,7 @@ int main() {
 
 void init(World& world, sf::RenderWindow& window) {
     auto& cp = ContentProvider::get_instance();
-    cp.load_textures();
-    cp.load_sprites();     // ensure you load all textures BEFORE loading sprites
+    cp.load_all_content();
     world.init();
 }
 

@@ -1,17 +1,13 @@
 #pragma once
-#include <memory>
 #include <string>
 #include <SFML/Graphics/Sprite.hpp>
 
+/// <summary>
+/// This is NOT the item component. This is simply a mapping from the items.json file. See @itemc.h for the component.
+/// </summary>
 class Item {
+public:
 	std::string name;
 	std::string description;
-	std::unique_ptr<sf::Sprite> sprite;
-
-public:
-	Item(std::string name, std::string description, std::unique_ptr<sf::Sprite>(sprite)) {
-		this->name = name;
-		this->description = description;
-		this->sprite = std::move(sprite);
-	}
+	std::string spriteName;
 };

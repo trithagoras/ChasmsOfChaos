@@ -1,6 +1,8 @@
 #include "floor.h"
 #include "gameobjectfactory.h"
 #include "gamecolors.h"
+#include <libtcod.hpp>
+#include <iostream>
 
 class MyCallback : public ITCODBspCallback {
 	std::vector<std::pair<int, int>>& roomCenters;
@@ -81,6 +83,17 @@ void Floor::spawn_object(std::unique_ptr<GameObject> gameobject, int x, int y) {
 	gameobject->set_position(x, y);
 	gameobject->set_floor(this);
 	this->gameobjects.push_back(std::move(gameobject));
+}
+
+void Floor::spawn_object_random(std::unique_ptr<GameObject> gameobject) {
+	auto rng = TCODRandom::getInstance();
+	sf::Vector2i pos(rng->getInt(1, width - 2), rng->getInt(1, height - 2));
+	while (!walkable(pos)) {
+		std::cout << " position was not in bounds. Retrying." << std::endl;
+		pos = sf::Vector2i(rng->getInt(1, width - 2), rng->getInt(1, height - 2));
+	}
+
+	spawn_object(std::move(gameobject), pos);
 }
 
 void Floor::drawCorridor(TCODMap& map, std::pair<int, int> start, std::pair<int, int> end) {

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include "utils.h"
+#include <memory>
 
 ContentProvider& ContentProvider::get_instance() {
 	static ContentProvider provider{};
@@ -17,9 +18,11 @@ const sf::Sprite& ContentProvider::get_sprite(const std::string& name) {
 }
 
 void ContentProvider::load_all_content() {
-	load_sprites();
 	load_textures();
-	//load_items();
+	load_sprites();
+
+	// load game objects after sprites have loaded
+	load_items();
 }
 
 void ContentProvider::load_sprites() {
@@ -62,4 +65,31 @@ const sf::Texture& ContentProvider::get_texture(const std::string& name) {
 		return *this->textures[name];
 	}
 	throw new std::runtime_error(std::format("Texture does not exist or is not loaded: Content/{}", name));
+}
+
+void ContentProvider::load_items() {
+	// Open the JSON file
+	std::ifstream file("Content/items.json");
+	json itemList;
+	file >> itemList;
+
+	// populating items
+	for (const auto& item : itemList) {
+		std::string name = item["name"];
+		std::string description = item["description"];
+		std::string spriteName = item["spriteName"];
+		auto item = std::make_unique<Item>();
+		item->name = name;
+		item->description = description;
+		item->spriteName = spriteName;
+		this->items.emplace(name, std::move(item));
+	}
+}
+
+const Item& ContentProvider::get_item(const std::string& name) {
+	auto& item = this->items[name];
+	if (item) {
+		return *this->items[name];
+	}
+	throw new std::runtime_error(std::format("Item does not exist or is not loaded: ", name));
 }

@@ -39,6 +39,9 @@
     <ClCompile Include="spritefactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="itemc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gameobject.h">
@@ -68,10 +71,13 @@
     <ClInclude Include="spritefactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="item.h">
+    <ClInclude Include="itemc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
