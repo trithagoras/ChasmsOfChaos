@@ -5,6 +5,11 @@
 #include <iostream>
 #include "rooms.h"
 
+struct MyCallBackArgumentList {
+	TCODMap* map;
+	Floor* floor;
+};
+
 class MyCallback : public ITCODBspCallback {
 	std::vector<std::pair<int, int>>& roomCenters;
 
@@ -12,7 +17,10 @@ public:
 	MyCallback(std::vector<std::pair<int, int>>& centers) : roomCenters(centers) {}
 
 	bool visitNode(TCODBsp* node, void* data) override {
-		auto map = static_cast<TCODMap*>(data);
+		auto args = static_cast<MyCallBackArgumentList*>(data);
+		auto map = args->map;
+		auto floor = args->floor;
+		auto objfac = GameObjectFactory::get_instance();
 		if (node->isLeaf()) {
 			const auto& rooms = GameRoomProvider::get_instance().get_rooms();
 			std::vector<Room> suitableRooms;
@@ -36,6 +44,11 @@ public:
 					for (int x = 0; x < selectedRoom.width; x++) {
 						bool walkable = selectedRoom.layout[y][x] != ROOM_CONSTANTS::WALL;
 						map->setProperties(room_x + x, room_y + y, walkable, walkable);
+
+						// if item (green)
+						if (selectedRoom.layout[y][x] == ROOM_CONSTANTS::ITEM) {
+							floor->spawn_object(std::move(objfac.create_random_item()), room_x + x, room_y + y);
+						}
 					}
 				}
 
@@ -59,7 +72,10 @@ void Floor::init() {
 	auto bsp = TCODBsp(0, 0, width, height);
 	bsp.splitRecursive(nullptr, 4, 5, 5, 1.5f, 1.5f);
 	auto pcallback = std::make_unique<MyCallback>(roomCenters);
-	bsp.traversePostOrder(pcallback.get(), map.get());
+	auto args = MyCallBackArgumentList{};
+	args.floor = this;
+	args.map = map.get();
+	bsp.traversePostOrder(pcallback.get(), &args);
 
 	// connect rooms
 	for (size_t i = 0; i < roomCenters.size() - 1; ++i) {

@@ -26,4 +26,5 @@ public:
 	const sf::Texture& get_texture(const std::string& name);
 	void load_items();
 	const Item& get_item(const std::string& name);
+	const Item& get_random_item();
 };

@@ -3,6 +3,8 @@
 #include <fstream>
 #include "utils.h"
 #include <memory>
+#include <libtcod.hpp>
+#include <iterator>
 
 ContentProvider& ContentProvider::get_instance() {
 	static ContentProvider provider{};
@@ -26,7 +28,6 @@ void ContentProvider::load_all_content() {
 }
 
 void ContentProvider::load_sprites() {
-	// Open the JSON file
 	std::ifstream file("Content/sprites.json");
 	json spriteList;
 	file >> spriteList;
@@ -68,7 +69,6 @@ const sf::Texture& ContentProvider::get_texture(const std::string& name) {
 }
 
 void ContentProvider::load_items() {
-	// Open the JSON file
 	std::ifstream file("Content/items.json");
 	json itemList;
 	file >> itemList;
@@ -92,4 +92,9 @@ const Item& ContentProvider::get_item(const std::string& name) {
 		return *this->items[name];
 	}
 	throw new std::runtime_error(std::format("Item does not exist or is not loaded: ", name));
+}
+
+const Item& ContentProvider::get_random_item() {
+	auto key = random_choose_map_key<std::string, std::unique_ptr<Item>>(items);
+	return *items[key];
 }

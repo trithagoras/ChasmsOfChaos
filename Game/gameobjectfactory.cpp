@@ -40,3 +40,8 @@ std::unique_ptr<GameObject> GameObjectFactory::create_item(const std::string& na
 
     return obj;
 }
+
+std::unique_ptr<GameObject> GameObjectFactory::create_random_item() {
+    auto& item = ContentProvider::get_instance().get_random_item();
+    return create_item(item.name);
+}
