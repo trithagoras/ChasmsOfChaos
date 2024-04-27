@@ -15,6 +15,9 @@ void World::init() {
 	for (int i = 0; i < 10; i++) {
 		get_current_floor().spawn_object_random(std::move(GameObjectFactory::get_instance().create_item("gold coin")));
 	}
+	for (int i = 0; i < 10; i++) {
+		get_current_floor().spawn_object_random(std::move(GameObjectFactory::get_instance().create_item("empty vial")));
+	}
 }
 
 void World::update(sf::Event& event) {

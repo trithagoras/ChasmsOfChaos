@@ -25,5 +25,14 @@
     "y": 64,
     "width": 16,
     "height": 16
+  },
+  {
+    "name": "empty vial",
+    "color": "0xCFC6B8FF",
+    "textureName": "game-tiles.png",
+    "x": 528,
+    "y": 224,
+    "width": 16,
+    "height": 16
   }
 ]
