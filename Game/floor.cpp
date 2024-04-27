@@ -89,7 +89,7 @@ void Floor::spawn_object_random(std::unique_ptr<GameObject> gameobject) {
 	auto rng = TCODRandom::getInstance();
 	sf::Vector2i pos(rng->getInt(1, width - 2), rng->getInt(1, height - 2));
 	while (!walkable(pos)) {
-		std::cout << " position was not in bounds. Retrying." << std::endl;
+		std::cout << gameobject->get_name() << " position was not in bounds. Retrying." << std::endl;
 		pos = sf::Vector2i(rng->getInt(1, width - 2), rng->getInt(1, height - 2));
 	}
 

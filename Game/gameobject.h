@@ -8,6 +8,7 @@ class Floor;	// forward decl
 
 class GameObject {
 protected:
+	std::string name;
 	std::unique_ptr<sf::Sprite> sprite;	// TODO: this isn't guaranteed initialized
 	sf::Vector2i position;
 	Floor* floor;
@@ -30,6 +31,12 @@ public:
 	}
 	void set_floor(Floor* floor) {
 		this->floor = floor;
+	}
+	const std::string& get_name() const {
+		return name;
+	}
+	void set_name(const std::string& name) {
+		this->name = name;
 	}
 	void translate(sf::Vector2i dpos);
 	void translate(int dx, int dy);
