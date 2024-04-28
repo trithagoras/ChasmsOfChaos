@@ -34,3 +34,17 @@ void GameObject::translate(int dx, int dy) {
 		this->position = newPos;
 	}
 }
+
+const std::vector<GameObject*> GameObject::get_collisions() const {
+	std::vector<GameObject*> collisions;
+	auto& allobjects = floor->get_gameobjects();
+	for (auto& obj : allobjects) {
+		if (obj.get() == this) {
+			continue;
+		}
+		if (obj->get_position() == get_position()) {
+			collisions.push_back(obj.get());
+		}
+	}
+	return collisions;
+}

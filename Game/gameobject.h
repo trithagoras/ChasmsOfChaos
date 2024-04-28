@@ -43,6 +43,7 @@ public:
 	virtual void init();
 	virtual void update(sf::Event& event);
 	virtual void draw(sf::RenderWindow& window);
+	const std::vector<GameObject*> get_collisions() const;
 
 	// have to define template methods in .h file
 	template <typename T>
@@ -74,5 +75,10 @@ public:
 			}
 		}
 		return nullptr;  // nullptr if no component found
+	}
+
+	template <typename T>
+	bool has_component() const {
+		return get_component<T>() != nullptr;
 	}
 };

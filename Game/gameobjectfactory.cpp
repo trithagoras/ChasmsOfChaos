@@ -5,6 +5,7 @@
 #include "player.h"
 #include "contentprovider.h"
 #include "itemc.h"
+#include "ladderc.h"
 
 GameObjectFactory& GameObjectFactory::get_instance() {
 	static GameObjectFactory factory{};
@@ -56,5 +57,11 @@ std::unique_ptr<GameObject> GameObjectFactory::create_gameobject(const std::stri
 
 std::unique_ptr<GameObject> GameObjectFactory::create_ladder(bool isDown) {
     std::string s = isDown ? "down" : "up";
-    return create_gameobject(std::format("Ladder going {}", s), std::format("{} ladder", s));
+    auto obj = std::make_unique<GameObject>();
+    auto sprite = std::make_unique<sf::Sprite>(SpriteFactory::get_instance().create_sprite(std::format("{} ladder", s)));
+    obj->set_name(std::format("Ladder going {}", s));
+    obj->set_sprite(std::move(sprite));
+    auto& comp = obj->add_component<LadderC>();
+    comp.isDown = isDown;
+    return obj;
 }

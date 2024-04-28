@@ -25,6 +25,9 @@ public:
 	bool walkable(sf::Vector2i pos) {
 		return walkable(pos.x, pos.y);
 	}
+	const std::vector<std::unique_ptr<GameObject>>& get_gameobjects() const {
+		return gameobjects;
+	}
 
 	/// <summary>
 	/// Ensures the object is spawned on a walkable tile. i.e. not in a wall.
