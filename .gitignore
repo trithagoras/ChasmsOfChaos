@@ -1,6 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudio,c++,vcpkg
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,c++,vcpkg
 
+out/
+
 ### C++ ###
 # Prerequisites
 *.d

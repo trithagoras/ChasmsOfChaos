@@ -5,6 +5,7 @@
 #include <memory>
 #include <libtcod.hpp>
 #include <iterator>
+#include <format>
 
 ContentProvider& ContentProvider::get_instance() {
 	static ContentProvider provider{};
@@ -74,10 +75,10 @@ void ContentProvider::load_items() {
 	file >> itemList;
 
 	// populating items
-	for (const auto& item : itemList) {
-		std::string name = item["name"];
-		std::string description = item["description"];
-		std::string spriteName = item["spriteName"];
+	for (const auto& i : itemList) {
+		std::string name = i["name"];
+		std::string description = i["description"];
+		std::string spriteName = i["spriteName"];
 		auto item = std::make_unique<Item>();
 		item->name = name;
 		item->description = description;

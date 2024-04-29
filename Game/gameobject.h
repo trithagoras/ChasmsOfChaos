@@ -2,6 +2,7 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <memory>
 #include "component.h"
 
 class Floor;	// forward decl
