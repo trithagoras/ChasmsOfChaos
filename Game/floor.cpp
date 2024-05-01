@@ -7,6 +7,7 @@
 #include <iterator>
 #include <algorithm>
 #include "player.h"
+#include "ladderc.h"
 
 struct MyCallBackArgumentList {
 	TCODMap* map;
@@ -104,9 +105,6 @@ void Floor::init() {
 }
 
 void Floor::update(sf::Event& event) {
-	// for (auto& obj : gameobjects) {
-	// 	obj->update(event);
-	// }
 	for (auto it = gameobjects.begin(); it < gameobjects.end(); it++) {
 		(*it)->update(event);
 	}
@@ -153,6 +151,31 @@ std::unique_ptr<GameObject> Floor::pop_player() {
     }
 
 	return nullptr;		// todo: is this enough?
+}
+
+GameObject* Floor::get_up_ladder() const {
+	const auto it = std::find_if(gameobjects.begin(), gameobjects.end(), [](const std::unique_ptr<GameObject>& obj) {
+			const auto &comp = obj->get_component<LadderC>();
+			return comp != nullptr && comp->isDown == false;
+		});
+	
+    if (it != gameobjects.end()) {
+		return (*it).get();
+    }
+
+	return nullptr;
+}
+GameObject* Floor::get_down_ladder() const {
+	const auto it = std::find_if(gameobjects.begin(), gameobjects.end(), [](const std::unique_ptr<GameObject>& obj) {
+			const auto &comp = obj->get_component<LadderC>();
+			return comp != nullptr && comp->isDown;
+		});
+	
+    if (it != gameobjects.end()) {
+		return (*it).get();
+    }
+
+	return nullptr;
 }
 
 void Floor::drawCorridor(TCODMap& map, std::pair<int, int> start, std::pair<int, int> end) {

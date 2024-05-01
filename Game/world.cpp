@@ -14,7 +14,8 @@ void World::init() {
 	}
 
 	// TODO: player should spawn on top of up ladder (for each floor that they enter)
-	get_current_floor().spawn_object_random(std::move(GameObjectFactory::get_instance().create_player()));
+	auto upLadder = get_current_floor().get_up_ladder();
+	get_current_floor().spawn_object(std::move(GameObjectFactory::get_instance().create_player()), upLadder->get_position());
 	// just for fun, spawn a few items
 	for (int i = 0; i < 10; i++) {
 		get_current_floor().spawn_object_random(std::move(GameObjectFactory::get_instance().create_item("gold coin")));

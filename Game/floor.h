@@ -29,6 +29,9 @@ public:
 		return gameobjects;
 	}
 
+	GameObject* get_up_ladder() const;
+	GameObject* get_down_ladder() const;
+
 	/// <summary>
 	/// Ensures the object is spawned on a walkable tile. i.e. not in a wall.
 	/// </summary>
