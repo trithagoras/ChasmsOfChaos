@@ -142,7 +142,7 @@
     <ClCompile Include="gameobjectfactory.cpp" />
     <ClCompile Include="itemc.cpp" />
     <ClCompile Include="ladderc.cpp" />
-    <ClCompile Include="player.cpp" />
+    <ClCompile Include="playerc.cpp" />
     <ClCompile Include="spritefactory.cpp" />
     <ClCompile Include="world.cpp" />
   </ItemGroup>
@@ -168,6 +168,18 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Content\game-tiles.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+    <Image Include="Content\rooms\canyon-6x5.bmp">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+    <Image Include="Content\rooms\jail-10x10.bmp">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+    <Image Include="Content\rooms\moat-12x16.bmp">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+    <Image Include="Content\rooms\treasure-room-12x6.bmp">
       <DeploymentContent>true</DeploymentContent>
     </Image>
   </ItemGroup>

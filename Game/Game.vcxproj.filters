@@ -24,9 +24,6 @@
     <ClCompile Include="gameobject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="gameobjectfactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -46,6 +43,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ladderc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="playerc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,6 +107,18 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Content\game-tiles.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Content\rooms\canyon-6x5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Content\rooms\jail-10x10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Content\rooms\moat-12x16.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Content\rooms\treasure-room-12x6.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

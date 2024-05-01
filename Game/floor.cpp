@@ -24,7 +24,7 @@ public:
 		auto args = static_cast<MyCallBackArgumentList*>(data);
 		auto map = args->map;
 		auto floor = args->floor;
-		auto objfac = GameObjectFactory::get_instance();
+		auto& objfac = GameObjectFactory::get_instance();
 		if (node->isLeaf()) {
 			const auto& rooms = GameRoomProvider::get_instance().get_rooms();
 			std::vector<Room> suitableRooms;
@@ -105,8 +105,10 @@ void Floor::init() {
 }
 
 void Floor::update(sf::Event& event) {
-	for (auto it = gameobjects.begin(); it < gameobjects.end(); it++) {
-		(*it)->update(event);
+	for (size_t i = 0; i < gameobjects.size(); ++i) {
+		gameobjects[i]->update(event);
+		// recheck size to avoid oob access if elements were removed (e.g. pop_player())
+		if (i >= gameobjects.size() - 1) break;
 	}
 }
 void Floor::draw(sf::RenderWindow& window) {
