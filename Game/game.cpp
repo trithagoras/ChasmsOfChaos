@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "world.h"
 #include <memory>
-#include "player.h"
+#include "playerc.h"
 #include <libtcod.hpp>
 #include "gameobjectfactory.h"
 #include "gamecolors.h"

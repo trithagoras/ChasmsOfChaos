@@ -15,7 +15,7 @@ link_directories("/opt/homebrew/Cellar/libtcod/1.24.0/lib")
 # json
 find_package(nlohmann_json 3.11.3 REQUIRED)
 
-add_executable(chasms game.cpp canyon-6x5.h component.h contentprovider.h contentprovider.cpp floor.cpp floor.h gamecolors.h gameobject.cpp gameobject.h gameobjectfactory.h gameobjectfactory.cpp item.h itemc.h itemc.cpp jail-10x10.h ladderc.h ladderc.cpp moat-12x16.h player.cpp player.h rooms.h spritefactory.cpp spritefactory.h treasure-room-12x6.h utils.h world.cpp world.h)
+add_executable(chasms game.cpp canyon-6x5.h component.h contentprovider.h contentprovider.cpp floor.cpp floor.h gamecolors.h gameobject.cpp gameobject.h gameobjectfactory.h gameobjectfactory.cpp item.h itemc.h itemc.cpp jail-10x10.h ladderc.h ladderc.cpp moat-12x16.h playerc.cpp playerc.h rooms.h spritefactory.cpp spritefactory.h treasure-room-12x6.h utils.h world.cpp world.h)
 
 target_link_libraries(chasms PRIVATE sfml-graphics sfml-audio)
 target_link_libraries(chasms PRIVATE tcod)

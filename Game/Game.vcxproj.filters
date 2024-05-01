@@ -56,7 +56,7 @@
     <ClInclude Include="world.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="player.h">
+    <ClInclude Include="playerc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="gameobjectfactory.h">

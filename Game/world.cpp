@@ -2,7 +2,7 @@
 #include "gameobjectfactory.h"
 #include <libtcod.hpp>
 #include <iostream>
-#include "player.h"
+#include "playerc.h"
 #include "ladderc.h"
 #include <algorithm>
 
@@ -13,7 +13,6 @@ void World::init() {
 		floors[i]->init();
 	}
 
-	// TODO: player should spawn on top of up ladder (for each floor that they enter)
 	auto upLadder = get_current_floor().get_up_ladder();
 	get_current_floor().spawn_object(std::move(GameObjectFactory::get_instance().create_player()), upLadder->get_position());
 	// just for fun, spawn a few items

@@ -159,7 +159,7 @@
     <ClInclude Include="jail-10x10.h" />
     <ClInclude Include="ladderc.h" />
     <ClInclude Include="moat-12x16.h" />
-    <ClInclude Include="player.h" />
+    <ClInclude Include="playerc.h" />
     <ClInclude Include="rooms.h" />
     <ClInclude Include="spritefactory.h" />
     <ClInclude Include="treasure-room-12x6.h" />

@@ -2,7 +2,7 @@
 #include "gamecolors.h"
 #include "spritefactory.h"
 #include "utils.h"
-#include "player.h"
+#include "playerc.h"
 #include "contentprovider.h"
 #include "itemc.h"
 #include "ladderc.h"
@@ -14,7 +14,7 @@ GameObjectFactory& GameObjectFactory::get_instance() {
 
 std::unique_ptr<GameObject> GameObjectFactory::create_player() {
     auto player = std::make_unique<GameObject>();
-    player->add_component<Player>();
+    player->add_component<PlayerC>();
     auto sprite = std::make_unique<sf::Sprite>(SpriteFactory::get_instance().create_sprite("player"));
     player->set_name("Adventurer");
     player->set_sprite(std::move(sprite));

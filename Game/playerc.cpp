@@ -1,15 +1,15 @@
-#include "player.h"
+#include "playerc.h"
 #include "gameobject.h"
 #include <iostream>
 #include <algorithm>
 #include "ladderc.h"
 #include "world.h"
 
-void Player::init() {
+void PlayerC::init() {
 
 }
 
-void Player::try_use_ladder(bool isDown) {
+void PlayerC::try_use_ladder(bool isDown) {
     auto collisions = this->gameobject.get_collisions();
     auto it = std::find_if(collisions.begin(), collisions.end(), [isDown](GameObject* obj) {
                 auto c = obj->get_component<LadderC>();
@@ -26,7 +26,7 @@ void Player::try_use_ladder(bool isDown) {
     }
 }
 
-void Player::update(sf::Event& event) {
+void PlayerC::update(sf::Event& event) {
     auto dx = 0;
     auto dy = 0;
     if (event.type == sf::Event::KeyPressed) {
@@ -54,15 +54,9 @@ void Player::update(sf::Event& event) {
         }
     }
     this->gameobject.translate(dx, dy);
-
-    // checking collisions with other gameobjects
-    //auto collisions = this->gameobject.get_collisions();
-    //for (auto obj : collisions) {
-    //    std::cout << "Player has collided with " << obj->get_name() << std::endl;
-    //}
 }
 
-void Player::draw(sf::RenderWindow& window) {
+void PlayerC::draw(sf::RenderWindow& window) {
     sf::View view = window.getView();
     auto [x, y] = this->gameobject.get_position();
     view.setCenter(x * 16, y * 16);
