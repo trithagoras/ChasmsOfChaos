@@ -4,6 +4,9 @@
 #include <libtcod.hpp>
 #include <iostream>
 #include "rooms.h"
+#include <iterator>
+#include <algorithm>
+#include "player.h"
 
 struct MyCallBackArgumentList {
 	TCODMap* map;
@@ -101,8 +104,11 @@ void Floor::init() {
 }
 
 void Floor::update(sf::Event& event) {
-	for (auto& obj : gameobjects) {
-		obj->update(event);
+	// for (auto& obj : gameobjects) {
+	// 	obj->update(event);
+	// }
+	for (auto it = gameobjects.begin(); it < gameobjects.end(); it++) {
+		(*it)->update(event);
 	}
 }
 void Floor::draw(sf::RenderWindow& window) {
@@ -133,6 +139,20 @@ void Floor::spawn_object_random(std::unique_ptr<GameObject> gameobject) {
 	}
 
 	spawn_object(std::move(gameobject), pos);
+}
+
+std::unique_ptr<GameObject> Floor::pop_player() {
+	auto it = std::find_if(gameobjects.begin(), gameobjects.end(), [](std::unique_ptr<GameObject>& obj) {
+			return obj->has_component<Player>();
+		});
+	
+    if (it != gameobjects.end()) {
+		std::unique_ptr<GameObject> pObj = std::move(*it);
+        gameobjects.erase(it);
+		return pObj;
+    }
+
+	return nullptr;		// todo: is this enough?
 }
 
 void Floor::drawCorridor(TCODMap& map, std::pair<int, int> start, std::pair<int, int> end) {

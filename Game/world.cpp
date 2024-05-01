@@ -2,6 +2,7 @@
 #include "gameobjectfactory.h"
 #include <libtcod.hpp>
 #include <iostream>
+#include "player.h"
 
 void World::init() {
 	// init all floors in dungeon
@@ -22,10 +23,28 @@ void World::init() {
 }
 
 void World::update(sf::Event& event) {
-	floors[0]->update(event);
+	get_current_floor().update(event);
 }
 
 void World::draw(sf::RenderWindow& window) {
-	floors[0]->draw(window);
+	get_current_floor().draw(window);
 }
 
+World& World::get_instance() {
+	static World world{};
+	return world;
+}
+
+void World::reset() {
+	floors = std::array<std::unique_ptr<Floor>, floorCount>();
+	current_floor = 0;
+}
+
+void World::change_floor(int floorNum) {
+	if (floorNum > floorCount || floorNum < 0) {
+		throw std::runtime_error(std::format("Invalid floornum {}", floorNum));
+	}
+	auto pPlayer = get_current_floor().pop_player();
+	current_floor++;
+	get_current_floor().spawn_object_random(std::move(pPlayer));
+}

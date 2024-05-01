@@ -19,7 +19,7 @@ int main() {
     window.setView(sf::View(sf::FloatRect(0, 0, 320, 240)));
     auto debugFullScreen = false;
 
-    World world{};
+    World& world = World::get_instance();
     init(world, window);
 
     while (window.isOpen()) {
@@ -32,7 +32,7 @@ int main() {
                 // TODO: DEBUG CODE
                 // =======================================================
                 if (event.key.code == sf::Keyboard::R) {
-                    world = World{};
+                    world.reset();
                     world.init();
                     continue;
                 }

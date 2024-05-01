@@ -34,4 +34,5 @@ public:
 	/// </summary>
 	/// <param name="gameobject"></param>
 	void spawn_object_random(std::unique_ptr<GameObject> gameobject);
+	std::unique_ptr<GameObject> pop_player();
 };

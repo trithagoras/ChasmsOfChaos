@@ -3,6 +3,7 @@
 #include <iostream>
 #include <algorithm>
 #include "ladderc.h"
+#include "world.h"
 
 void Player::init() {
 
@@ -35,6 +36,7 @@ void Player::update(sf::Event& event) {
 
             if (it != collisions.end()) {
                 std::cout << "Going down the ladder!" << std::endl;
+                World::get_instance().descend();
             } else {
                 std::cout << "There's no ladder here!" << std::endl;
             }
