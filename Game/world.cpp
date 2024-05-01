@@ -3,6 +3,8 @@
 #include <libtcod.hpp>
 #include <iostream>
 #include "player.h"
+#include "ladderc.h"
+#include <algorithm>
 
 void World::init() {
 	// init all floors in dungeon
@@ -44,7 +46,21 @@ void World::change_floor(int floorNum) {
 	if (floorNum > floorCount || floorNum < 0) {
 		throw std::runtime_error(std::format("Invalid floornum {}", floorNum));
 	}
+	if (floorNum == current_floor) {
+		return;
+	}
+
+	bool isGoingDown = floorNum > current_floor;
+
 	auto pPlayer = get_current_floor().pop_player();
-	current_floor++;
-	get_current_floor().spawn_object_random(std::move(pPlayer));
+	current_floor += isGoingDown ? 1 : -1;
+
+	// get this floors up ladder position
+	auto it = std::find_if(get_current_floor().get_gameobjects().begin(), get_current_floor().get_gameobjects().end(), [isGoingDown](const std::unique_ptr<GameObject>& pobj) {
+		auto comp = pobj->get_component<LadderC>();
+		return comp != nullptr && comp->isDown == !isGoingDown;
+	});
+
+	auto pos = (*it)->get_position();
+	get_current_floor().spawn_object(std::move(pPlayer), pos);
 }

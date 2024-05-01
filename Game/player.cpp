@@ -9,37 +9,48 @@ void Player::init() {
 
 }
 
-void Player::update(sf::Event& event) {
+void Player::try_use_ladder(bool isDown) {
     auto collisions = this->gameobject.get_collisions();
+    auto it = std::find_if(collisions.begin(), collisions.end(), [isDown](GameObject* obj) {
+                auto c = obj->get_component<LadderC>();
+                return c != nullptr && c->isDown == isDown;
+            });
+
+    const std::string dString = isDown ? "down" : "up";
+
+    if (it != collisions.end()) {
+        std::cout << "Going " << dString << " the ladder!" << std::endl;
+        isDown ? World::get_instance().descend() : World::get_instance().ascend();
+    } else {
+        std::cout << "There's no ladder here!" << std::endl;
+    }
+}
+
+void Player::update(sf::Event& event) {
     auto dx = 0;
     auto dy = 0;
     if (event.type == sf::Event::KeyPressed) {
         switch (event.key.code) {
-        case sf::Keyboard::Up:
-            dy = -1;
-            break;
-        case sf::Keyboard::Left:
-            dx = -1;
-            break;
-        case sf::Keyboard::Down:
-            dy = 1;
-            break;
-        case sf::Keyboard::Right:
-            dx = 1;
-            break;
-        case sf::Keyboard::Period:
-            // todo: put this in another function
-            auto it = std::find_if(collisions.begin(), collisions.end(), [](GameObject* obj) {
-                auto c = obj->get_component<LadderC>();
-                return c != nullptr && c->isDown;
-            });
-
-            if (it != collisions.end()) {
-                std::cout << "Going down the ladder!" << std::endl;
-                World::get_instance().descend();
-            } else {
-                std::cout << "There's no ladder here!" << std::endl;
-            }
+            case sf::Keyboard::Up:
+                dy = -1;
+                break;
+            case sf::Keyboard::Left:
+                dx = -1;
+                break;
+            case sf::Keyboard::Down:
+                dy = 1;
+                break;
+            case sf::Keyboard::Right:
+                dx = 1;
+                break;
+            case sf::Keyboard::Period:
+                try_use_ladder(true);
+                break;
+            case sf::Keyboard::Comma:
+                try_use_ladder(false);
+                break;
+            default:
+                break;
         }
     }
     this->gameobject.translate(dx, dy);

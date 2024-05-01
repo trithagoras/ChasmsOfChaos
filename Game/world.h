@@ -24,9 +24,15 @@ public:
 	}
 	void change_floor(int floorNum);
 	void descend() {
+		if (current_floor == floorCount - 1) {
+			return;
+		}
 		change_floor(current_floor + 1);
 	}
 	void ascend() {
+		if (current_floor == 0) {
+			return;
+		}
 		change_floor(current_floor - 1);
 	}
 };
