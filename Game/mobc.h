@@ -1,10 +1,9 @@
 #pragma once
 #include "component.h"
 
-class LadderC : public Component {
+class MobC : public Component {
 public:
-	LadderC(GameObject& gameobject) : Component(gameobject) {}
-	bool isDown = true;
+	MobC(GameObject& gameobject) : Component(gameobject) {}
 	void init() override {}
 	void update(sf::Event& event) override {}
 	void draw(sf::RenderWindow& window) override {}
