@@ -9,9 +9,11 @@ void GameObject::init() {
     }
 }
 void GameObject::update(sf::Event& event) {
-    for (auto& component : components) {
-        component->update(event);
-    }
+	for (size_t i = 0; i < components.size(); ++i) {
+		components[i]->update(event);
+		// recheck size to avoid oob access if elements were removed
+		if (i >= components.size() - 1) break;
+	}
 }
 
 void GameObject::draw(sf::RenderWindow& window) {
