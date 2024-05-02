@@ -44,9 +44,11 @@ void PlayerC::update(sf::Event& event) {
                 dx = 1;
                 break;
             case sf::Keyboard::Period:
+                if (!event.key.shift) break;
                 try_use_ladder(true);
                 break;
             case sf::Keyboard::Comma:
+                if (!event.key.shift) break;
                 try_use_ladder(false);
                 break;
             default:
