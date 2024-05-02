@@ -104,11 +104,11 @@ const Item& ContentProvider::get_random_item() {
 void ContentProvider::load_fonts() {
 	// todo: this obviously is hardcoded to load a single font. Maybe need more in the future (maybe not?)
 	auto font = std::make_unique<sf::Font>();
-	if (!font->loadFromFile(std::format("Content/{}", "Consolas.ttf"))) {
+	if (!font->loadFromFile(std::format("Content/{}", "Pixeled.ttf"))) {
 		std::cerr << "Failed to load font" << std::endl;
-		throw new std::runtime_error(std::format("Failed to load texture at path: Content/{}", "Consolas.ttf"));
+		throw new std::runtime_error(std::format("Failed to load texture at path: Content/{}", "Pixeled.ttf"));
 	}
-	this->fonts.emplace("Consolas.ttf", std::move(font));
+	this->fonts.emplace("Pixeled.ttf", std::move(font));
 }
 
 const sf::Font& ContentProvider::get_font(const std::string& name) {

@@ -21,9 +21,9 @@ UI& UI::get_instance() {
 }
 
 sf::Text make_text(const std::string& stext, int x = 0, int y = 0) {
-	const auto& font = ContentProvider::get_instance().get_font("Consolas.ttf");
+	const auto& font = ContentProvider::get_instance().get_font("Pixeled.ttf");
 
-	sf::Text text(stext, font, 24);
+	sf::Text text(stext, font, 16);
 	text.setPosition(sf::Vector2f(x, y));
 	text.setFillColor(sf::Color::White);
 	text.setStyle(sf::Text::Bold);
@@ -55,13 +55,14 @@ void UI::draw_ui(sf::RenderWindow& window) {
 
 	// drawing bottom ui elements
 	int i = 32;
+	int ypos = 40;
 
 	// floor
 	auto flooricon = sprites.create_sprite("ladder icon");
 	flooricon.setPosition(i, height - 48);
 	flooricon.setScale(2, 2);
 	window.draw(flooricon);
-	window.draw(make_text(std::format("{:02}", world.get_floor_num() + 1), i + 40, height - 48));
+	window.draw(make_text(std::format("{:02}", world.get_floor_num() + 1), i + 40, height - ypos));
 
 	i += 128;
 
@@ -70,7 +71,7 @@ void UI::draw_ui(sf::RenderWindow& window) {
 	hearticon.setPosition(i, height - 48);
 	hearticon.setScale(2, 2);
 	window.draw(hearticon);
-	window.draw(make_text(std::format("{:02}/{:02}", mobComp->hp, mobComp->maxHp), i + 40, height - 48));
+	window.draw(make_text(std::format("{:02}/{:02}", mobComp->hp, mobComp->maxHp), i + 40, height - ypos));
 
 	i += 128;
 
@@ -79,7 +80,7 @@ void UI::draw_ui(sf::RenderWindow& window) {
 	manaicon.setPosition(i, height - 48);
 	manaicon.setScale(2, 2);
 	window.draw(manaicon);
-	window.draw(make_text(std::format("{:02}/{:02}", mobComp->mp, mobComp->maxMp), i + 40, height - 48));
+	window.draw(make_text(std::format("{:02}/{:02}", mobComp->mp, mobComp->maxMp), i + 40, height - ypos));
 
 	i += 128;
 
@@ -88,7 +89,7 @@ void UI::draw_ui(sf::RenderWindow& window) {
 	acicon.setPosition(i, height - 48);
 	acicon.setScale(2, 2);
 	window.draw(acicon);
-	window.draw(make_text(std::format("{:02}", mobComp->ac), i + 40, height - 48));
+	window.draw(make_text(std::format("{:02}", mobComp->ac), i + 40, height - ypos));
 
 	i += 128;
 
@@ -97,7 +98,7 @@ void UI::draw_ui(sf::RenderWindow& window) {
 	expicon.setPosition(i, height - 48);
 	expicon.setScale(2, 2);
 	window.draw(expicon);
-	window.draw(make_text(std::format("{:04}/{:04}", playerComp->xp, playerComp->maxXp), i + 40, height - 48));
+	window.draw(make_text(std::format("{:04}/{:04}", playerComp->xp, playerComp->maxXp), i + 40, height - ypos));
 
 	// ####################################################
 	// reset view to game view after UI drawing is done
