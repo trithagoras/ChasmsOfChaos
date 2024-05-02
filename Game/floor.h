@@ -17,8 +17,8 @@ public:
 	void init();
 	void update(sf::Event& event);
 	void draw(sf::RenderWindow& window);
-	void spawn_object(std::unique_ptr<GameObject> gameobject, sf::Vector2i position);
-	void spawn_object(std::unique_ptr<GameObject> gameobject, int x, int y);
+	const GameObject& spawn_object(std::unique_ptr<GameObject> gameobject, sf::Vector2i position);
+	const GameObject& spawn_object(std::unique_ptr<GameObject> gameobject, int x, int y);
 	bool walkable(int x, int y) {
 		return map->isWalkable(x, y);
 	}
@@ -36,6 +36,7 @@ public:
 	/// Ensures the object is spawned on a walkable tile. i.e. not in a wall.
 	/// </summary>
 	/// <param name="gameobject"></param>
-	void spawn_object_random(std::unique_ptr<GameObject> gameobject);
+	/// <returns>a reference to the new gameobject</returns>
+	const GameObject& spawn_object_random(std::unique_ptr<GameObject> gameobject);
 	std::unique_ptr<GameObject> pop_player();
 };

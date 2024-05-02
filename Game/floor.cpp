@@ -100,8 +100,12 @@ void Floor::init() {
 	auto& fac = GameObjectFactory::get_instance();
 	auto upladder = fac.create_ladder(false);
 	auto downladder = fac.create_ladder(true);
-	spawn_object_random(std::move(upladder));
-	spawn_object_random(std::move(downladder));
+	const auto& upladderpos = spawn_object_random(std::move(upladder)).get_position();
+	const auto& downladderpos = spawn_object_random(std::move(downladder)).get_position();
+	if (upladderpos == downladderpos) {
+		// todo: do something more here!
+		std::cout << "Ladders spawned on each other." << std::endl;
+	}
 }
 
 void Floor::update(sf::Event& event) {
@@ -120,17 +124,18 @@ void Floor::draw(sf::RenderWindow& window) {
 	}
 }
 
-void Floor::spawn_object(std::unique_ptr<GameObject> gameobject, sf::Vector2i position) {
-	spawn_object(std::move(gameobject), position.x, position.y);
+const GameObject& Floor::spawn_object(std::unique_ptr<GameObject> gameobject, sf::Vector2i position) {
+	return spawn_object(std::move(gameobject), position.x, position.y);
 }
 
-void Floor::spawn_object(std::unique_ptr<GameObject> gameobject, int x, int y) {
+const GameObject& Floor::spawn_object(std::unique_ptr<GameObject> gameobject, int x, int y) {
 	gameobject->set_position(x, y);
 	gameobject->set_floor(this);
 	this->gameobjects.push_back(std::move(gameobject));
+	return *gameobjects.back();
 }
 
-void Floor::spawn_object_random(std::unique_ptr<GameObject> gameobject) {
+const GameObject& Floor::spawn_object_random(std::unique_ptr<GameObject> gameobject) {
 	auto rng = TCODRandom::getInstance();
 	sf::Vector2i pos(rng->getInt(1, width - 2), rng->getInt(1, height - 2));
 	while (!walkable(pos)) {
@@ -138,7 +143,7 @@ void Floor::spawn_object_random(std::unique_ptr<GameObject> gameobject) {
 		pos = sf::Vector2i(rng->getInt(1, width - 2), rng->getInt(1, height - 2));
 	}
 
-	spawn_object(std::move(gameobject), pos);
+	return spawn_object(std::move(gameobject), pos);
 }
 
 std::unique_ptr<GameObject> Floor::pop_player() {
