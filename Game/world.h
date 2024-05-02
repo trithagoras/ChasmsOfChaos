@@ -21,6 +21,9 @@ public:
 	void reset();
 	void update(sf::Event& event);
 	void draw(sf::RenderWindow& window);
+	int get_floor_num() const {
+		return current_floor;
+	}
 	Floor& get_current_floor() {
 		return *floors[current_floor];
 	}

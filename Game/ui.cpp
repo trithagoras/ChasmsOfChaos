@@ -2,6 +2,8 @@
 #include <SFML/Graphics/Text.hpp>
 #include "contentprovider.h"
 #include "world.h"
+#include <format>
+#include "spritefactory.h"
 
 void UI::initialize(const sf::RenderWindow& window) {
 	sf::View uiView;
@@ -15,19 +17,36 @@ UI& UI::get_instance() {
 	return instance;
 }
 
+sf::Text make_text(const std::string& stext) {
+	const auto& font = ContentProvider::get_instance().get_font("Consolas.ttf");
+
+	sf::Text text(stext, font, 24);
+	text.setFillColor(sf::Color::White);
+	text.setStyle(sf::Text::Bold);
+	text.setOutlineColor(sf::Color::Black);
+	text.setOutlineThickness(1);
+	return text;
+}
+
 void UI::draw_ui(sf::RenderWindow& window) {
 	auto oldView = sf::View(window.getView());
 
-	auto& floor = World::get_instance().get_current_floor();
+	auto& world = World::get_instance();
+	auto& floor = world.get_current_floor();
 	const auto& player = floor.get_player();
+	auto& sprites = 
 
 	// set view to UI view before drawing
 	// ####################################################
 
 	window.setView(uiView);
-	sf::Text scoreText("Score: 100", ContentProvider::get_instance().get_font("Consolas.ttf"), 24);
-	scoreText.setPosition(10, 10);
-	window.draw(scoreText);
+	// TODO: this should be changed to ladder icon with rest of UI
+	auto floorText = make_text(std::format("Floor: {}", world.get_floor_num()));
+	floorText.setPosition(10, 10);
+	window.draw(floorText);
+
+	// health, AC, mana, EXP
+	auto& hearticon = 
 
 	// ####################################################
 	// reset view to game view after UI drawing is done
