@@ -54,6 +54,15 @@
     "height": 16
   },
   {
+    "name": "ladder icon",
+    "color": "0xF4B41BFF",
+    "textureName": "game-tiles.png",
+    "x": 336,
+    "y": 16,
+    "width": 16,
+    "height": 16
+  },
+  {
     "name": "heart icon",
     "color": "0xE6482EFF",
     "textureName": "game-tiles.png",
