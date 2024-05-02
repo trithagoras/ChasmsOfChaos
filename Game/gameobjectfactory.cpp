@@ -6,6 +6,7 @@
 #include "contentprovider.h"
 #include "itemc.h"
 #include "ladderc.h"
+#include "mobc.h"
 
 GameObjectFactory& GameObjectFactory::get_instance() {
 	static GameObjectFactory factory{};
@@ -14,7 +15,11 @@ GameObjectFactory& GameObjectFactory::get_instance() {
 
 std::unique_ptr<GameObject> GameObjectFactory::create_player() {
     auto player = std::make_unique<GameObject>();
-    player->add_component<PlayerC>();
+    auto& playerC = player->add_component<PlayerC>();
+    playerC.maxXp = 64;
+    auto& mobC = player->add_component<MobC>();
+    mobC.hp = mobC.maxHp = 15;
+    mobC.mp = mobC.maxMp = 5;
     auto sprite = std::make_unique<sf::Sprite>(SpriteFactory::get_instance().create_sprite("player"));
     player->set_name("Adventurer");
     player->set_sprite(std::move(sprite));

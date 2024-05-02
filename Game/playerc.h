@@ -10,4 +10,5 @@ public:
 	void update(sf::Event& event) override;
 	void draw(sf::RenderWindow& window) override;
 	void try_use_ladder(bool isDown);
+	int maxXp = 0, xp = 0;
 };

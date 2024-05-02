@@ -7,4 +7,5 @@ public:
 	void init() override {}
 	void update(sf::Event& event) override {}
 	void draw(sf::RenderWindow& window) override {}
+	int maxHp = 0, hp = 0, maxMp = 0, mp = 0, ac = 0;
 };

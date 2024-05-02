@@ -5,6 +5,8 @@
 #include <format>
 #include "spritefactory.h"
 #include "gamecolors.h"
+#include "mobc.h"
+#include "playerc.h"
 
 void UI::initialize(const sf::RenderWindow& window) {
 	sf::View uiView;
@@ -35,10 +37,12 @@ void UI::draw_ui(sf::RenderWindow& window) {
 
 	auto& world = World::get_instance();
 	auto& floor = world.get_current_floor();
-	const auto& player = floor.get_player();
+	auto pPlayer = floor.get_player();
+	const auto& playerComp = pPlayer->get_component<PlayerC>();
+	const auto& mobComp = pPlayer->get_component<MobC>();
 	auto& sprites = SpriteFactory::get_instance();
 
-	auto [width, height] = uiView.getSize();
+	auto& [width, height] = uiView.getSize();
 
 	// set view to UI view before drawing
 	window.setView(uiView);
@@ -66,7 +70,7 @@ void UI::draw_ui(sf::RenderWindow& window) {
 	hearticon.setPosition(i, height - 48);
 	hearticon.setScale(2, 2);
 	window.draw(hearticon);
-	window.draw(make_text(std::format("{:02}/{:02}", 8, 15), i + 40, height - 48));
+	window.draw(make_text(std::format("{:02}/{:02}", mobComp->hp, mobComp->maxHp), i + 40, height - 48));
 
 	i += 128;
 
@@ -75,7 +79,7 @@ void UI::draw_ui(sf::RenderWindow& window) {
 	manaicon.setPosition(i, height - 48);
 	manaicon.setScale(2, 2);
 	window.draw(manaicon);
-	window.draw(make_text(std::format("{:02}/{:02}", 15, 15), i + 40, height - 48));
+	window.draw(make_text(std::format("{:02}/{:02}", mobComp->mp, mobComp->maxMp), i + 40, height - 48));
 
 	i += 128;
 
@@ -84,7 +88,7 @@ void UI::draw_ui(sf::RenderWindow& window) {
 	acicon.setPosition(i, height - 48);
 	acicon.setScale(2, 2);
 	window.draw(acicon);
-	window.draw(make_text(std::format("{:02}", 11), i + 40, height - 48));
+	window.draw(make_text(std::format("{:02}", mobComp->ac), i + 40, height - 48));
 
 	i += 128;
 
@@ -93,7 +97,7 @@ void UI::draw_ui(sf::RenderWindow& window) {
 	expicon.setPosition(i, height - 48);
 	expicon.setScale(2, 2);
 	window.draw(expicon);
-	window.draw(make_text(std::format("{:04}/{:04}", 16, 64), i + 40, height - 48));
+	window.draw(make_text(std::format("{:04}/{:04}", playerComp->xp, playerComp->maxXp), i + 40, height - 48));
 
 	// ####################################################
 	// reset view to game view after UI drawing is done
