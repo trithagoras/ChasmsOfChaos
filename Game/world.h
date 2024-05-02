@@ -12,6 +12,8 @@ class World {
 	std::array<std::unique_ptr<Floor>, floorCount> floors;
 	int current_floor = 0;
 	World() {};
+	World(const World&) = delete;
+	World& operator=(const World&) = delete;
 
 public:
 	static World& get_instance();

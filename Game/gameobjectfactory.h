@@ -4,6 +4,9 @@
 #include "item.h"
 
 class GameObjectFactory {
+	GameObjectFactory() {}
+	GameObjectFactory(const GameObjectFactory&) = delete;
+	GameObjectFactory& operator=(const GameObjectFactory&) = delete;
 public:
 	static GameObjectFactory& get_instance();
 	std::unique_ptr<GameObject> create_player();
