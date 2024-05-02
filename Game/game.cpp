@@ -8,6 +8,7 @@
 #include "gamecolors.h"
 #include "contentprovider.h"
 #include "rooms.h"
+#include "ui.h"
 
 void init(World& world, sf::RenderWindow& window);
 void update(World& world, sf::Event& event);
@@ -18,6 +19,8 @@ int main() {
     window.setFramerateLimit(60);
     window.setView(sf::View(sf::FloatRect(0, 0, 320, 240)));
     auto debugFullScreen = false;
+    auto& ui = UI::get_instance();
+    ui.initialize(window);
 
     World& world = World::get_instance();
     init(world, window);

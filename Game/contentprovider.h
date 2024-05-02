@@ -2,6 +2,7 @@
 #include <nlohmann/json.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Font.hpp>
 #include "item.h"
 
 using json = nlohmann::json;
@@ -13,6 +14,7 @@ class ContentProvider {
 
 	std::map<std::string, std::unique_ptr<sf::Sprite>> sprites;
 	std::map<std::string, std::unique_ptr<sf::Texture>> textures;
+	std::map<std::string, std::unique_ptr<sf::Font>> fonts;
 	std::map<std::string, std::unique_ptr<Item>> items;
 
 	sf::Texture& load_texture(const std::string& name);
@@ -27,4 +29,6 @@ public:
 	void load_items();
 	const Item& get_item(const std::string& name);
 	const Item& get_random_item();
+	void load_fonts();
+	const sf::Font& get_font(const std::string& name);
 };

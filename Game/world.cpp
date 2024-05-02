@@ -5,6 +5,7 @@
 #include "playerc.h"
 #include "ladderc.h"
 #include <algorithm>
+#include "ui.h"
 
 void World::init() {
 	// init all floors in dungeon
@@ -30,6 +31,7 @@ void World::update(sf::Event& event) {
 
 void World::draw(sf::RenderWindow& window) {
 	get_current_floor().draw(window);
+	UI::get_instance().draw_ui(window);
 }
 
 World& World::get_instance() {

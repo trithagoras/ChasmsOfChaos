@@ -140,10 +140,9 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="gameobjectfactory.cpp" />
-    <ClCompile Include="itemc.cpp" />
-    <ClCompile Include="ladderc.cpp" />
     <ClCompile Include="playerc.cpp" />
     <ClCompile Include="spritefactory.cpp" />
+    <ClCompile Include="ui.cpp" />
     <ClCompile Include="world.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +163,7 @@
     <ClInclude Include="rooms.h" />
     <ClInclude Include="spritefactory.h" />
     <ClInclude Include="treasure-room-12x6.h" />
+    <ClInclude Include="ui.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="world.h" />
   </ItemGroup>
@@ -191,6 +191,9 @@
     <None Include="Content\sprites.json">
       <DeploymentContent>true</DeploymentContent>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Content\Consolas.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

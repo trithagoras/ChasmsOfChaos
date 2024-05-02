@@ -36,16 +36,13 @@
     <ClCompile Include="spritefactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="itemc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="world.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ladderc.cpp">
+    <ClCompile Include="playerc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="playerc.cpp">
+    <ClCompile Include="ui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,6 +104,9 @@
     <ClInclude Include="mobc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Content\game-tiles.png">
@@ -126,7 +126,16 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\sprites.json" />
-    <None Include="Content\items.json" />
+    <None Include="Content\items.json">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Content\sprites.json">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Content\Consolas.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
   </ItemGroup>
 </Project>

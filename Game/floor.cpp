@@ -185,6 +185,18 @@ GameObject* Floor::get_down_ladder() const {
 	return nullptr;
 }
 
+GameObject* Floor::get_player() const {
+	const auto it = std::find_if(gameobjects.begin(), gameobjects.end(), [](const std::unique_ptr<GameObject>& obj) {
+		return obj->has_component<PlayerC>();
+		});
+
+	if (it != gameobjects.end()) {
+		return (*it).get();
+	}
+
+	return nullptr;
+}
+
 void Floor::drawCorridor(TCODMap& map, std::pair<int, int> start, std::pair<int, int> end) {
 	// Horizontal corridor
 	int min_x = std::min(start.first, end.first);

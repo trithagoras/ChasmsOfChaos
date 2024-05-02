@@ -52,5 +52,50 @@
     "y": 16,
     "width": 16,
     "height": 16
+  },
+  {
+    "name": "heart icon",
+    "color": "0xE6482EFF",
+    "textureName": "game-tiles.png",
+    "x": 672,
+    "y": 160,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "name": "shield icon",
+    "color": "0xCFC6B8FF",
+    "textureName": "game-tiles.png",
+    "x": 640,
+    "y": 64,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "name": "look icon",
+    "color": "0xCFC6B8FF",
+    "textureName": "game-tiles.png",
+    "x": 608,
+    "y": 192,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "name": "exp icon",
+    "color": "0x38D973FF",
+    "textureName": "game-tiles.png",
+    "x": 576,
+    "y": 176,
+    "width": 16,
+    "height": 16
+  },
+  {
+    "name": "mana icon",
+    "color": "0x3CACD7FF",
+    "textureName": "game-tiles.png",
+    "x": 224,
+    "y": 288,
+    "width": 16,
+    "height": 16
   }
 ]

@@ -23,6 +23,7 @@ const sf::Sprite& ContentProvider::get_sprite(const std::string& name) {
 void ContentProvider::load_all_content() {
 	load_textures();
 	load_sprites();
+	load_fonts();
 
 	// load game objects after sprites have loaded
 	load_items();
@@ -98,4 +99,22 @@ const Item& ContentProvider::get_item(const std::string& name) {
 const Item& ContentProvider::get_random_item() {
 	auto key = random_choose_map_key<std::string, std::unique_ptr<Item>>(items);
 	return *items[key];
+}
+
+void ContentProvider::load_fonts() {
+	// todo: this obviously is hardcoded to load a single font. Maybe need more in the future (maybe not?)
+	auto font = std::make_unique<sf::Font>();
+	if (!font->loadFromFile(std::format("Content/{}", "Consolas.ttf"))) {
+		std::cerr << "Failed to load font" << std::endl;
+		throw new std::runtime_error(std::format("Failed to load texture at path: Content/{}", "Consolas.ttf"));
+	}
+	this->fonts.emplace("Consolas.ttf", std::move(font));
+}
+
+const sf::Font& ContentProvider::get_font(const std::string& name) {
+	auto& font = this->fonts[name];
+	if (font) {
+		return *this->fonts[name];
+	}
+	throw new std::runtime_error(std::format("Font does not exist or is not loaded: ", name));
 }
