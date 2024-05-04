@@ -53,6 +53,13 @@ public:
 						if (selectedRoom.layout[y][x] == ROOM_CONSTANTS::ITEM) {
 							floor->spawn_object(std::move(objfac.create_random_item()), room_x + x, room_y + y);
 						}
+
+						// if water (blue)
+						if (selectedRoom.layout[y][x] == ROOM_CONSTANTS::WATER) {
+							floor->spawn_object(std::move(objfac.create_gameobject("Water", "water")), room_x + x, room_y + y);
+							// TODO: ability to swim
+							//map->setProperties(room_x + x, room_y + y, false, false);
+						}
 					}
 				}
 

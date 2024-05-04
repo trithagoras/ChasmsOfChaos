@@ -193,8 +193,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="Content\Consolas.ttf" />
-    <Font Include="Content\Pixeled.ttf" />
+    <Font Include="Content\Pixeled.ttf">
+      <DeploymentContent>true</DeploymentContent>
+    </Font>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -134,9 +134,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="Content\Consolas.ttf">
-      <Filter>Resource Files</Filter>
-    </Font>
     <Font Include="Content\Pixeled.ttf">
       <Filter>Resource Files</Filter>
     </Font>
