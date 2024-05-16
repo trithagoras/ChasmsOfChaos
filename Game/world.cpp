@@ -6,6 +6,7 @@
 #include "ladderc.h"
 #include <algorithm>
 #include "ui.h"
+#include <format>
 
 void World::init() {
 	// init all floors in dungeon

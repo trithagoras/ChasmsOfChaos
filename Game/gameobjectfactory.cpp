@@ -7,6 +7,7 @@
 #include "itemc.h"
 #include "ladderc.h"
 #include "mobc.h"
+#include <format>
 
 GameObjectFactory& GameObjectFactory::get_instance() {
 	static GameObjectFactory factory{};
