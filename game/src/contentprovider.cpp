@@ -54,7 +54,7 @@ void ContentProvider::load_textures() {
 
 sf::Texture& ContentProvider::load_texture(const std::string& name) {
 	auto texture = std::make_unique<sf::Texture>();
-	if (!texture->loadFromFile(std::format("Content/{}", name))) {
+	if (!texture->loadFromFile(std::format("content/{}", name))) {
 		std::cerr << "Failed to load texture" << std::endl;
 		throw new std::runtime_error(std::format("Failed to load texture at path: Content/{}", name));
 	}
@@ -71,7 +71,7 @@ const sf::Texture& ContentProvider::get_texture(const std::string& name) {
 }
 
 void ContentProvider::load_items() {
-	std::ifstream file("Content/items.json");
+	std::ifstream file("content/items.json");
 	json itemList;
 	file >> itemList;
 
@@ -104,7 +104,7 @@ const Item& ContentProvider::get_random_item() {
 void ContentProvider::load_fonts() {
 	// todo: this obviously is hardcoded to load a single font. Maybe need more in the future (maybe not?)
 	auto font = std::make_unique<sf::Font>();
-	if (!font->loadFromFile(std::format("Content/{}", "Pixeled.ttf"))) {
+	if (!font->loadFromFile(std::format("content/{}", "Pixeled.ttf"))) {
 		std::cerr << "Failed to load font" << std::endl;
 		throw new std::runtime_error(std::format("Failed to load texture at path: Content/{}", "Pixeled.ttf"));
 	}
