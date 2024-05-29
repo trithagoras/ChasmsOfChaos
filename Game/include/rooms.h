@@ -1,10 +1,10 @@
 #pragma once
 #include <memory>
 #include <vector>
-#include "jail-10x10.h"
-#include "moat-12x16.h"
-#include "canyon-6x5.h"
-#include "treasure-room-12x6.h"
+#include "rooms/jail-10x10.h"
+#include "rooms/moat-12x16.h"
+#include "rooms/canyon-6x5.h"
+#include "rooms/treasure-room-12x6.h"
 
 enum ROOM_CONSTANTS {
 	WALL = 0x0,

@@ -12,13 +12,27 @@ project(chasms VERSION 1.0)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# copy content directory
+set(CONTENT_SOURCE_DIR "${CMAKE_SOURCE_DIR}/../content")
+set(CONTENT_DEST_DIR "${CMAKE_BINARY_DIR}/content")
+
+add_custom_target(copy_content ALL
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CONTENT_SOURCE_DIR} ${CONTENT_DEST_DIR}
+    COMMENT "Copying content directory to build directory"
+)
+
 # Find SFML components
-find_package(SFML 2.6 COMPONENTS graphics CONFIG REQUIRED)
+find_package(SFML 2.5 COMPONENTS graphics CONFIG REQUIRED)
 
 find_package(nlohmann_json CONFIG REQUIRED)
 find_package(libtcod CONFIG REQUIRED)
 
-add_executable(chasms game.cpp canyon-6x5.h component.h contentprovider.h contentprovider.cpp floor.cpp floor.h gamecolors.h gameobject.cpp gameobject.h gameobjectfactory.h gameobjectfactory.cpp item.h itemc.h jail-10x10.h ladderc.h moat-12x16.h playerc.cpp playerc.h rooms.h spritefactory.cpp spritefactory.h treasure-room-12x6.h utils.h world.cpp world.h ui.h ui.cpp)
+include_directories(include)
 
-target_link_libraries(chasms PRIVATE sfml-graphics)
-target_link_libraries(chasms PRIVATE nlohmann_json::nlohmann_json libtcod::libtcod)
+add_executable(${PROJECT_NAME} src/game.cpp src/contentprovider.cpp src/floor.cpp src/gameobject.cpp src/gameobjectfactory.cpp src/playerc.cpp src/spritefactory.cpp src/world.cpp src/ui.cpp)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics)
+target_link_libraries(${PROJECT_NAME} PRIVATE nlohmann_json::nlohmann_json libtcod::libtcod)
+
+add_dependencies(${PROJECT_NAME} copy_content)
