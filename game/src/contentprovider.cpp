@@ -30,7 +30,7 @@ void ContentProvider::load_all_content() {
 }
 
 void ContentProvider::load_sprites() {
-	std::ifstream file("Content/sprites.json");
+	std::ifstream file("content/sprites.json");
 	json spriteList;
 	file >> spriteList;
 
@@ -56,7 +56,7 @@ sf::Texture& ContentProvider::load_texture(const std::string& name) {
 	auto texture = std::make_unique<sf::Texture>();
 	if (!texture->loadFromFile(std::format("content/{}", name))) {
 		std::cerr << "Failed to load texture" << std::endl;
-		throw new std::runtime_error(std::format("Failed to load texture at path: Content/{}", name));
+		throw new std::runtime_error(std::format("Failed to load texture at path: content/{}", name));
 	}
 	this->textures.emplace(name, std::move(texture));
 	return *this->textures[name];
@@ -67,7 +67,7 @@ const sf::Texture& ContentProvider::get_texture(const std::string& name) {
 	if (texture) {
 		return *this->textures[name];
 	}
-	throw new std::runtime_error(std::format("Texture does not exist or is not loaded: Content/{}", name));
+	throw new std::runtime_error(std::format("Texture does not exist or is not loaded: content/{}", name));
 }
 
 void ContentProvider::load_items() {
@@ -106,7 +106,7 @@ void ContentProvider::load_fonts() {
 	auto font = std::make_unique<sf::Font>();
 	if (!font->loadFromFile(std::format("content/{}", "Pixeled.ttf"))) {
 		std::cerr << "Failed to load font" << std::endl;
-		throw new std::runtime_error(std::format("Failed to load texture at path: Content/{}", "Pixeled.ttf"));
+		throw new std::runtime_error(std::format("Failed to load texture at path: content/{}", "Pixeled.ttf"));
 	}
 	this->fonts.emplace("Pixeled.ttf", std::move(font));
 }
