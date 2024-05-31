@@ -23,12 +23,12 @@ public:
 	static ContentProvider& get_instance();
 	void load_all_content();
 	void load_sprites();
-	const sf::Sprite& get_sprite(const std::string& name);
+	const sf::Sprite& get_sprite(const std::string& name) const;
 	void load_textures();
-	const sf::Texture& get_texture(const std::string& name);
+	const sf::Texture& get_texture(const std::string& name) const;
 	void load_items();
-	const Item& get_item(const std::string& name);
-	const Item& get_random_item();
+	const Item& get_item(const std::string& name) const;
+	const Item& get_random_item() const;
 	void load_fonts();
-	const sf::Font& get_font(const std::string& name);
+	const sf::Font& get_font(const std::string& name) const;
 };

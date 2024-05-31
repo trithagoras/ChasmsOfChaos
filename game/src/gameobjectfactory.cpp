@@ -14,7 +14,7 @@ GameObjectFactory& GameObjectFactory::get_instance() {
 	return factory;
 }
 
-std::unique_ptr<GameObject> GameObjectFactory::create_player() {
+std::unique_ptr<GameObject> GameObjectFactory::create_player() const {
     auto player = std::make_unique<GameObject>();
     auto& playerC = player->add_component<PlayerC>();
     playerC.maxXp = 64;
@@ -27,7 +27,7 @@ std::unique_ptr<GameObject> GameObjectFactory::create_player() {
     return player;
 }
 
-std::unique_ptr<GameObject> GameObjectFactory::create_wall() {
+std::unique_ptr<GameObject> GameObjectFactory::create_wall() const {
     auto wall = std::make_unique<GameObject>();
     auto sprite = std::make_unique<sf::Sprite>(SpriteFactory::get_instance().create_sprite("wall"));
     wall->set_name("Wall");
@@ -35,7 +35,7 @@ std::unique_ptr<GameObject> GameObjectFactory::create_wall() {
     return wall;
 }
 
-std::unique_ptr<GameObject> GameObjectFactory::create_item(const std::string& name) {
+std::unique_ptr<GameObject> GameObjectFactory::create_item(const std::string& name) const {
     auto obj = std::make_unique<GameObject>();
     auto item = std::make_unique<Item>(ContentProvider::get_instance().get_item(name));
     auto& comp = obj->add_component<ItemC>();
@@ -48,12 +48,12 @@ std::unique_ptr<GameObject> GameObjectFactory::create_item(const std::string& na
     return obj;
 }
 
-std::unique_ptr<GameObject> GameObjectFactory::create_random_item() {
+std::unique_ptr<GameObject> GameObjectFactory::create_random_item() const {
     auto& item = ContentProvider::get_instance().get_random_item();
     return create_item(item.name);
 }
 
-std::unique_ptr<GameObject> GameObjectFactory::create_gameobject(const std::string& name, const std::string& spriteName) {
+std::unique_ptr<GameObject> GameObjectFactory::create_gameobject(const std::string& name, const std::string& spriteName) const {
     auto obj = std::make_unique<GameObject>();
     auto sprite = std::make_unique<sf::Sprite>(SpriteFactory::get_instance().create_sprite(spriteName));
     obj->set_name(name);
@@ -61,7 +61,7 @@ std::unique_ptr<GameObject> GameObjectFactory::create_gameobject(const std::stri
     return obj;
 }
 
-std::unique_ptr<GameObject> GameObjectFactory::create_ladder(bool isDown) {
+std::unique_ptr<GameObject> GameObjectFactory::create_ladder(bool isDown) const {
     std::string s = isDown ? "down" : "up";
     auto obj = std::make_unique<GameObject>();
     auto sprite = std::make_unique<sf::Sprite>(SpriteFactory::get_instance().create_sprite(std::format("{} ladder", s)));

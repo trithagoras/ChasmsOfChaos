@@ -12,7 +12,7 @@ ContentProvider& ContentProvider::get_instance() {
 	return provider;
 }
 
-const sf::Sprite& ContentProvider::get_sprite(const std::string& name) {
+const sf::Sprite& ContentProvider::get_sprite(const std::string& name) const {
 	auto& sprite = this->sprites[name];
 	if (sprite) {
 		return *this->sprites[name];
@@ -62,7 +62,7 @@ sf::Texture& ContentProvider::load_texture(const std::string& name) {
 	return *this->textures[name];
 }
 
-const sf::Texture& ContentProvider::get_texture(const std::string& name) {
+const sf::Texture& ContentProvider::get_texture(const std::string& name) const {
 	auto& texture = this->textures[name];
 	if (texture) {
 		return *this->textures[name];
@@ -88,7 +88,7 @@ void ContentProvider::load_items() {
 	}
 }
 
-const Item& ContentProvider::get_item(const std::string& name) {
+const Item& ContentProvider::get_item(const std::string& name) const {
 	auto& item = this->items[name];
 	if (item) {
 		return *this->items[name];
@@ -96,7 +96,7 @@ const Item& ContentProvider::get_item(const std::string& name) {
 	throw new std::runtime_error(std::format("Item does not exist or is not loaded: ", name));
 }
 
-const Item& ContentProvider::get_random_item() {
+const Item& ContentProvider::get_random_item() const {
 	auto key = random_choose_map_key<std::string, std::unique_ptr<Item>>(items);
 	return *items[key];
 }
@@ -111,7 +111,7 @@ void ContentProvider::load_fonts() {
 	this->fonts.emplace("Pixeled.ttf", std::move(font));
 }
 
-const sf::Font& ContentProvider::get_font(const std::string& name) {
+const sf::Font& ContentProvider::get_font(const std::string& name) const {
 	auto& font = this->fonts[name];
 	if (font) {
 		return *this->fonts[name];
