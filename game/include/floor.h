@@ -40,4 +40,5 @@ public:
 	/// <returns>a reference to the new gameobject</returns>
 	const GameObject& spawn_object_random(std::unique_ptr<GameObject> gameobject);
 	std::unique_ptr<GameObject> pop_player();
+	std::unique_ptr<GameObject> pop_gameobject(const GameObject& gameobject);
 };

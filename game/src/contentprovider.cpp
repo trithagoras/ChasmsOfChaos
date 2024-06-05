@@ -13,9 +13,9 @@ ContentProvider& ContentProvider::get_instance() {
 }
 
 const sf::Sprite& ContentProvider::get_sprite(const std::string& name) const {
-	auto& sprite = this->sprites[name];
+	auto& sprite = this->sprites.at(name);
 	if (sprite) {
-		return *this->sprites[name];
+		return *this->sprites.at(name);
 	}
 	throw new std::runtime_error(std::format("Sprite does not exist or is not loaded: {}", name));
 }
@@ -63,9 +63,9 @@ sf::Texture& ContentProvider::load_texture(const std::string& name) {
 }
 
 const sf::Texture& ContentProvider::get_texture(const std::string& name) const {
-	auto& texture = this->textures[name];
+	auto& texture = this->textures.at(name);
 	if (texture) {
-		return *this->textures[name];
+		return *this->textures.at(name);
 	}
 	throw new std::runtime_error(std::format("Texture does not exist or is not loaded: content/{}", name));
 }
@@ -89,16 +89,16 @@ void ContentProvider::load_items() {
 }
 
 const Item& ContentProvider::get_item(const std::string& name) const {
-	auto& item = this->items[name];
+	auto& item = this->items.at(name);
 	if (item) {
-		return *this->items[name];
+		return *this->items.at(name);
 	}
 	throw new std::runtime_error(std::format("Item does not exist or is not loaded: ", name));
 }
 
 const Item& ContentProvider::get_random_item() const {
 	auto key = random_choose_map_key<std::string, std::unique_ptr<Item>>(items);
-	return *items[key];
+	return *items.at(key);
 }
 
 void ContentProvider::load_fonts() {
@@ -112,9 +112,9 @@ void ContentProvider::load_fonts() {
 }
 
 const sf::Font& ContentProvider::get_font(const std::string& name) const {
-	auto& font = this->fonts[name];
+	auto& font = this->fonts.at(name);
 	if (font) {
-		return *this->fonts[name];
+		return *this->fonts.at(name);
 	}
 	throw new std::runtime_error(std::format("Font does not exist or is not loaded: ", name));
 }

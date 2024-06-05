@@ -153,6 +153,20 @@ const GameObject& Floor::spawn_object_random(std::unique_ptr<GameObject> gameobj
 	return spawn_object(std::move(gameobject), pos);
 }
 
+std::unique_ptr<GameObject> Floor::pop_gameobject(const GameObject& gameobject) {
+	auto it = std::find_if(gameobjects.begin(), gameobjects.end(), [&gameobject](std::unique_ptr<GameObject>& obj) {
+		return obj.get() == &gameobject;
+		});
+
+	if (it != gameobjects.end()) {
+		std::unique_ptr<GameObject> pObj = std::move(*it);
+		gameobjects.erase(it);
+		return pObj;
+	}
+
+	return nullptr;		// todo: is this enough?
+}
+
 std::unique_ptr<GameObject> Floor::pop_player() {
 	auto it = std::find_if(gameobjects.begin(), gameobjects.end(), [](std::unique_ptr<GameObject>& obj) {
 			return obj->has_component<PlayerC>();

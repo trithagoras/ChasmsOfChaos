@@ -54,7 +54,7 @@ public:
 		// if component already exists, return it
 		for (auto& component : components) {
 			if (typeid(*component) == typeid(T)) {
-				return *dynamic_cast<T*>(component.get());
+				return *static_cast<T*>(component.get());
 			}
 		}
 
