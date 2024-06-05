@@ -79,6 +79,9 @@ Floor::Floor(int width, int height) {
 }
 
 void Floor::init() {
+	if (initialized) {
+		return;
+	}
 	map = std::make_unique<TCODMap>(width, height);
 	auto bsp = TCODBsp(0, 0, width, height);
 	bsp.splitRecursive(nullptr, 4, 5, 5, 1.5f, 1.5f);
@@ -113,6 +116,8 @@ void Floor::init() {
 		// todo: do something more here!
 		std::cout << "Ladders spawned on each other." << std::endl;
 	}
+
+	initialized = true;
 }
 
 void Floor::update(sf::Event& event) {

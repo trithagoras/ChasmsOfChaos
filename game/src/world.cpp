@@ -9,21 +9,15 @@
 #include <format>
 
 void World::init() {
-	// init all floors in dungeon
-	for (auto i = 0; i < floorCount; i++) {
+	for (int i = 0; i < floorCount; i++) {
 		floors[i] = std::make_unique<Floor>(50, 50);
-		floors[i]->init();
 	}
+
+	// init only first floor (lazy loading)
+	floors[0]->init();
 
 	auto upLadder = get_current_floor().get_up_ladder();
 	get_current_floor().spawn_object(std::move(GameObjectFactory::get_instance().create_player()), upLadder->get_position());
-	// just for fun, spawn a few items
-	for (int i = 0; i < 10; i++) {
-		get_current_floor().spawn_object_random(std::move(GameObjectFactory::get_instance().create_item("gold coin")));
-	}
-	for (int i = 0; i < 10; i++) {
-		get_current_floor().spawn_object_random(std::move(GameObjectFactory::get_instance().create_item("empty vial")));
-	}
 }
 
 void World::update(sf::Event& event) {
@@ -57,6 +51,11 @@ void World::change_floor(int floorNum) {
 
 	auto pPlayer = get_current_floor().pop_player();
 	current_floor += isGoingDown ? 1 : -1;
+
+	// lazy load next floor
+	if (!get_current_floor().is_initialized()) {
+		get_current_floor().init();
+	}
 
 	// get this floors up ladder position
 	auto it = std::find_if(get_current_floor().get_gameobjects().begin(), get_current_floor().get_gameobjects().end(), [isGoingDown](const std::unique_ptr<GameObject>& pobj) {

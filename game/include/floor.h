@@ -12,6 +12,7 @@ class Floor {
 	std::vector<std::pair<int, int>> roomCenters;
 	void drawCorridor(TCODMap& map, std::pair<int, int> start, std::pair<int, int> end);
 	sf::RectangleShape floorShape;
+	bool initialized = false;
 public:
 	Floor(int width, int height);
 	void init();
@@ -27,6 +28,9 @@ public:
 	}
 	const std::vector<std::unique_ptr<GameObject>>& get_gameobjects() const {
 		return gameobjects;
+	}
+	bool is_initialized() const {
+		return initialized;
 	}
 
 	GameObject* get_up_ladder() const;
