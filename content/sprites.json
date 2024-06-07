@@ -1,7 +1,7 @@
 [
   {
     "name": "player",
-    "color": "0xD2B48CFF",
+    "color": "0xFFFFFFFF",
     "textureName": "game-tiles.png",
     "x": 448,
     "y": 16,
@@ -10,7 +10,7 @@
   },
   {
     "name": "wall",
-    "color": "0xCFC6B8FF",
+    "color": "0xFFFFFFFF",
     "textureName": "game-tiles.png",
     "x": 160,
     "y": 272,
@@ -19,7 +19,7 @@
   },
   {
     "name": "water",
-    "color": "0x3CACD7FF",
+    "color": "0xFFFFFFFF",
     "textureName": "game-tiles.png",
     "x": 128,
     "y": 80,
@@ -28,7 +28,7 @@
   },
   {
     "name": "gold coin",
-    "color": "0xF4B41BFF",
+    "color": "0xFFFFFFFF",
     "textureName": "game-tiles.png",
     "x": 656,
     "y": 64,
@@ -37,7 +37,7 @@
   },
   {
     "name": "empty vial",
-    "color": "0xCFC6B8FF",
+    "color": "0xFFFFFFFF",
     "textureName": "game-tiles.png",
     "x": 528,
     "y": 224,
@@ -46,7 +46,7 @@
   },
   {
     "name": "down ladder",
-    "color": "0xBF7958FF",
+    "color": "0xFFFFFFFF",
     "textureName": "game-tiles.png",
     "x": 336,
     "y": 0,
@@ -55,7 +55,7 @@
   },
   {
     "name": "up ladder",
-    "color": "0xBF7958FF",
+    "color": "0xFFFFFFFF",
     "textureName": "game-tiles.png",
     "x": 336,
     "y": 16,
@@ -65,7 +65,7 @@
   {
     "name": "ladder icon",
     "color": "0xF4B41BFF",
-    "textureName": "game-tiles.png",
+    "textureName": "game-tiles-transparent.png",
     "x": 336,
     "y": 16,
     "width": 16,
@@ -74,7 +74,7 @@
   {
     "name": "heart icon",
     "color": "0xE6482EFF",
-    "textureName": "game-tiles.png",
+    "textureName": "game-tiles-transparent.png",
     "x": 672,
     "y": 160,
     "width": 16,
@@ -83,7 +83,7 @@
   {
     "name": "shield icon",
     "color": "0xCFC6B8FF",
-    "textureName": "game-tiles.png",
+    "textureName": "game-tiles-transparent.png",
     "x": 640,
     "y": 64,
     "width": 16,
@@ -92,7 +92,7 @@
   {
     "name": "look icon",
     "color": "0xCFC6B8FF",
-    "textureName": "game-tiles.png",
+    "textureName": "game-tiles-transparent.png",
     "x": 608,
     "y": 192,
     "width": 16,
@@ -101,7 +101,7 @@
   {
     "name": "exp icon",
     "color": "0x38D973FF",
-    "textureName": "game-tiles.png",
+    "textureName": "game-tiles-transparent.png",
     "x": 576,
     "y": 176,
     "width": 16,
@@ -110,7 +110,7 @@
   {
     "name": "mana icon",
     "color": "0x3CACD7FF",
-    "textureName": "game-tiles.png",
+    "textureName": "game-tiles-transparent.png",
     "x": 224,
     "y": 288,
     "width": 16,
