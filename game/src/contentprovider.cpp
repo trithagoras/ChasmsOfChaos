@@ -53,7 +53,7 @@ void ContentProvider::load_sprites() {
 }
 
 void ContentProvider::load_textures() {
-	const std::vector<std::string> textures = { "game-tiles.png", "game-tiles-transparent.png", "Player0.png", "Player1.png"};
+	const std::vector<std::string> textures = { "game-tiles.png", "game-tiles-transparent.png", "Player0.png", "Player1.png", "Floor.png"};
 	for (const auto& s : textures) {
 		load_texture(s);
 	}

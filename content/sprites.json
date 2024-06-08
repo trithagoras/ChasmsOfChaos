@@ -12,9 +12,9 @@
   {
     "name": "wall",
     "color": "0xFFFFFFFF",
-    "textureName": "game-tiles.png",
-    "x": 160,
-    "y": 272,
+    "textureName": "Floor.png",
+    "x": 16,
+    "y": 112,
     "width": 16,
     "height": 16
   },
