@@ -2,6 +2,9 @@
 #include "floor.h"
 #include <typeinfo>
 #include <type_traits>
+#include "contentprovider.h"
+#include <format>
+#include "world.h"
 
 void GameObject::init() {
     for (auto& component : components) {
@@ -22,8 +25,16 @@ void GameObject::draw(sf::RenderWindow& window) {
 	}
 
 	auto [x, y] = get_position();
-	this->sprite->setPosition(x * 16, y * 16);
-	window.draw(*this->sprite);
+	this->sprite->sprite.setPosition(x * 16, y * 16);
+
+	auto& world = World::get_instance();
+	if (world.wigglejustchanged) {
+		auto& content = ContentProvider::get_instance();
+		auto texturename = std::vformat(this->sprite->texturebasename, std::make_format_args(world.wigglestate));
+		this->sprite->sprite.setTexture(content.get_texture(texturename));
+	}
+
+	window.draw(this->sprite->sprite);
 }
 
 void GameObject::translate(sf::Vector2i dpos) {

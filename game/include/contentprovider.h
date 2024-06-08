@@ -4,6 +4,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include "item.h"
+#include "spritewrapper.h"
 
 using json = nlohmann::json;
 
@@ -12,7 +13,7 @@ class ContentProvider {
 	ContentProvider(const ContentProvider&) = delete;
 	ContentProvider& operator=(const ContentProvider&) = delete;
 
-	std::map<std::string, std::unique_ptr<sf::Sprite>> sprites;
+	std::map<std::string, std::unique_ptr<SpriteWrapper>> sprites;
 	std::map<std::string, std::unique_ptr<sf::Texture>> textures;
 	std::map<std::string, std::unique_ptr<sf::Font>> fonts;
 	std::map<std::string, std::unique_ptr<Item>> items;
@@ -23,7 +24,7 @@ public:
 	static ContentProvider& get_instance();
 	void load_all_content();
 	void load_sprites();
-	const sf::Sprite& get_sprite(const std::string& name) const;
+	const SpriteWrapper& get_sprite(const std::string& name) const;
 	void load_textures();
 	const sf::Texture& get_texture(const std::string& name) const;
 	void load_items();

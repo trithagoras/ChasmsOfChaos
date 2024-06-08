@@ -16,6 +16,9 @@ class World {
 	World& operator=(const World&) = delete;
 
 public:
+	int wigglestate = 0;	// alternates between 0 and 1
+	bool wigglejustchanged = false;		// shitty optimization
+
 	static World& get_instance();
 	void init();
 	void reset();

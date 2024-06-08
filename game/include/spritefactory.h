@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <memory>
-#include <SFML/Graphics/Sprite.hpp>
+#include "spritewrapper.h"
 
 class SpriteFactory {
 	SpriteFactory() {}
@@ -10,5 +10,5 @@ class SpriteFactory {
 
 public:
 	static SpriteFactory& get_instance();
-	sf::Sprite create_sprite(const std::string& name) const;
+	SpriteWrapper create_sprite(const std::string& name) const;
 };

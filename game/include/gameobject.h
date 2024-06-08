@@ -4,13 +4,14 @@
 #include <vector>
 #include <memory>
 #include "component.h"
+#include "spritewrapper.h"
 
 class Floor;	// forward decl
 
 class GameObject {
 protected:
 	std::string name;
-	std::unique_ptr<sf::Sprite> sprite;	// TODO: this isn't guaranteed initialized
+	std::unique_ptr<SpriteWrapper> sprite;	// TODO: this isn't guaranteed initialized
 	sf::Vector2i position;
 	Floor* floor;
 	std::vector<std::unique_ptr<Component>> components;
@@ -27,7 +28,7 @@ public:
 	void set_position(int x, int y) {
 		this->position = sf::Vector2i(x, y);
 	}
-	void set_sprite(std::unique_ptr<sf::Sprite> sprite) {
+	void set_sprite(std::unique_ptr<SpriteWrapper> sprite) {
 		this->sprite = std::move(sprite);
 	}
 	void set_floor(Floor* floor) {

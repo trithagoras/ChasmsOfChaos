@@ -2,12 +2,11 @@
   {
     "name": "player",
     "color": "0xFFFFFFFF",
-    "textureName": "Player{}.png",
-    "x": 0,
-    "y": 0,
+    "textureName": "game-tiles.png",
+    "x": 448,
+    "y": 16,
     "width": 16,
-    "height": 16,
-    "wiggly": true
+    "height": 16
   },
   {
     "name": "wall",

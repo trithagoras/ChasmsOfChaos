@@ -27,10 +27,14 @@ int main() {
     auto& soundplayer = SoundPlayer::get_instance();
     soundplayer.play_music("song-2.ogg", true);
 
+    // set up wiggly graphics
+    sf::Clock wiggleclock{};
+
     World& world = World::get_instance();
     init(world, window);
 
     while (window.isOpen()) {
+        world.wigglejustchanged = false;
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
@@ -57,6 +61,13 @@ int main() {
                 update(world, event);
             }
         }
+        // wiggle
+        if (wiggleclock.getElapsedTime().asSeconds() >= 0.5) {
+            world.wigglestate ^= 1;
+            world.wigglejustchanged = true;
+            wiggleclock.restart();
+        }
+
         draw(world, window);
     }
     return 0;

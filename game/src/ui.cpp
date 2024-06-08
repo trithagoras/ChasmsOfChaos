@@ -59,45 +59,45 @@ void UI::draw_ui(sf::RenderWindow& window) {
 
 	// floor
 	auto flooricon = sprites.create_sprite("ladder icon");
-	flooricon.setPosition(i, height - 48);
-	flooricon.setScale(2, 2);
-	window.draw(flooricon);
+	flooricon.sprite.setPosition(i, height - 48);
+	flooricon.sprite.setScale(2, 2);
+	window.draw(flooricon.sprite);
 	window.draw(make_text(std::format("{:02}", world.get_floor_num() + 1), i + 40, height - ypos));
 
 	i += 128;
 
 	// health
 	auto hearticon = sprites.create_sprite("heart icon");
-	hearticon.setPosition(i, height - 48);
-	hearticon.setScale(2, 2);
-	window.draw(hearticon);
+	hearticon.sprite.setPosition(i, height - 48);
+	hearticon.sprite.setScale(2, 2);
+	window.draw(hearticon.sprite);
 	window.draw(make_text(std::format("{:02}/{:02}", mobComp->hp, mobComp->maxHp), i + 40, height - ypos));
 
 	i += 128;
 
 	// mana
 	auto manaicon = sprites.create_sprite("mana icon");
-	manaicon.setPosition(i, height - 48);
-	manaicon.setScale(2, 2);
-	window.draw(manaicon);
+	manaicon.sprite.setPosition(i, height - 48);
+	manaicon.sprite.setScale(2, 2);
+	window.draw(manaicon.sprite);
 	window.draw(make_text(std::format("{:02}/{:02}", mobComp->mp, mobComp->maxMp), i + 40, height - ypos));
 
 	i += 128;
 
 	// AC
 	auto acicon = sprites.create_sprite("shield icon");
-	acicon.setPosition(i, height - 48);
-	acicon.setScale(2, 2);
-	window.draw(acicon);
+	acicon.sprite.setPosition(i, height - 48);
+	acicon.sprite.setScale(2, 2);
+	window.draw(acicon.sprite);
 	window.draw(make_text(std::format("{:02}", mobComp->ac), i + 40, height - ypos));
 
 	i += 128;
 
 	// EXP
 	auto expicon = sprites.create_sprite("exp icon");
-	expicon.setPosition(i, height - 48);
-	expicon.setScale(2, 2);
-	window.draw(expicon);
+	expicon.sprite.setPosition(i, height - 48);
+	expicon.sprite.setScale(2, 2);
+	window.draw(expicon.sprite);
 	window.draw(make_text(std::format("{:04}/{:04}", playerComp->xp, playerComp->maxXp), i + 40, height - ypos));
 
 	// ####################################################

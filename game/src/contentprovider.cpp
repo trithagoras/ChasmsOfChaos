@@ -12,7 +12,7 @@ ContentProvider& ContentProvider::get_instance() {
 	return provider;
 }
 
-const sf::Sprite& ContentProvider::get_sprite(const std::string& name) const {
+const SpriteWrapper& ContentProvider::get_sprite(const std::string& name) const {
 	auto& sprite = this->sprites.at(name);
 	if (sprite) {
 		return *this->sprites.at(name);
@@ -36,17 +36,24 @@ void ContentProvider::load_sprites() {
 
 	// populating sprites
 	for (const auto& item : spriteList) {
+		bool wiggly = item.contains("wiggly") ? (bool)item["wiggly"] : false;
 		std::string name = item["name"];
-		auto& texture = get_texture(item["textureName"]);
+		const sf::Texture* texture = nullptr;
+		if (!wiggly) {
+			texture = &get_texture(item["textureName"]);
+		} else {
+			auto texturename = std::vformat((std::string)item["textureName"], std::make_format_args(0));	// set wiggly texture to index 0 to initialize
+			texture = &get_texture(texturename);
+		}
 		auto color = sf::Color(str_to_hex(item["color"]));
 		auto textureRect = sf::IntRect(item["x"], item["y"], item["width"], item["height"]);
-		this->sprites[name] = std::make_unique<sf::Sprite>(sf::Sprite(texture, textureRect));
-		this->sprites[name]->setColor(color);
+		this->sprites[name] = std::make_unique<SpriteWrapper>(sf::Sprite(*texture, textureRect), wiggly, item["textureName"]);
+		this->sprites[name]->sprite.setColor(color);
 	}
 }
 
 void ContentProvider::load_textures() {
-	const std::vector<std::string> textures = { "game-tiles.png", "game-tiles-transparent.png"};
+	const std::vector<std::string> textures = { "game-tiles.png", "game-tiles-transparent.png", "Player0.png", "Player1.png"};
 	for (const auto& s : textures) {
 		load_texture(s);
 	}
@@ -54,9 +61,9 @@ void ContentProvider::load_textures() {
 
 sf::Texture& ContentProvider::load_texture(const std::string& name) {
 	auto texture = std::make_unique<sf::Texture>();
-	if (!texture->loadFromFile(std::format("content/{}", name))) {
+	if (!texture->loadFromFile(std::format("content/art/{}", name))) {
 		std::cerr << "Failed to load texture" << std::endl;
-		throw new std::runtime_error(std::format("Failed to load texture at path: content/{}", name));
+		throw new std::runtime_error(std::format("Failed to load texture at path: content/art/{}", name));
 	}
 	this->textures.emplace(name, std::move(texture));
 	return *this->textures[name];
@@ -67,7 +74,7 @@ const sf::Texture& ContentProvider::get_texture(const std::string& name) const {
 	if (texture) {
 		return *this->textures.at(name);
 	}
-	throw new std::runtime_error(std::format("Texture does not exist or is not loaded: content/{}", name));
+	throw new std::runtime_error(std::format("Texture does not exist or is not loaded: content/art/{}", name));
 }
 
 void ContentProvider::load_items() {

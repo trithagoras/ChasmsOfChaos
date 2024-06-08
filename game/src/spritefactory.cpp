@@ -6,7 +6,7 @@ SpriteFactory& SpriteFactory::get_instance() {
 	return factory;
 }
 
-sf::Sprite SpriteFactory::create_sprite(const std::string& name) const {
+SpriteWrapper SpriteFactory::create_sprite(const std::string& name) const {
 	auto& sprite = ContentProvider::get_instance().get_sprite(name);
-	return sf::Sprite(sprite);
+	return SpriteWrapper(sprite);	// copy
 }
