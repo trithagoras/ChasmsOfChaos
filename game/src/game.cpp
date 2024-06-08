@@ -9,6 +9,7 @@
 #include "contentprovider.h"
 #include "rooms.h"
 #include "ui.h"
+#include "soundplayer.h"
 
 void init(World& world, sf::RenderWindow& window);
 void update(World& world, sf::Event& event);
@@ -21,6 +22,10 @@ int main() {
     auto debugFullScreen = false;
     auto& ui = UI::get_instance();
     ui.initialize(window);
+
+    // play music
+    auto& soundplayer = SoundPlayer::get_instance();
+    soundplayer.play_music("song-2.ogg", true);
 
     World& world = World::get_instance();
     init(world, window);
