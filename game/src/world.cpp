@@ -20,8 +20,8 @@ void World::init() {
 	get_current_floor().spawn_object(std::move(GameObjectFactory::get_instance().create_player()), upLadder->get_position());
 }
 
-void World::update(sf::Event& event) {
-	get_current_floor().update(event);
+void World::update() {
+	get_current_floor().update();
 }
 
 void World::draw(sf::RenderWindow& window) {

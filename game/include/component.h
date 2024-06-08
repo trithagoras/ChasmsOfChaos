@@ -11,6 +11,6 @@ protected:
 
 public:
 	virtual void init() = 0;
-	virtual void update(sf::Event& event) = 0;
+	virtual void update() = 0;
 	virtual void draw(sf::RenderWindow& window) = 0;
 };

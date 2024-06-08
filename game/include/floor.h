@@ -1,5 +1,4 @@
 #pragma once
-#include <SFML/Window/Event.hpp>
 #include <SFML/Graphics.hpp>
 #include <libtcod.hpp>
 #include <memory>
@@ -16,7 +15,7 @@ class Floor {
 public:
 	Floor(int width, int height);
 	void init();
-	void update(sf::Event& event);
+	void update();
 	void draw(sf::RenderWindow& window);
 	const GameObject& spawn_object(std::unique_ptr<GameObject> gameobject, sf::Vector2i position);
 	const GameObject& spawn_object(std::unique_ptr<GameObject> gameobject, int x, int y);

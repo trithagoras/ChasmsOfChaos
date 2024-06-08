@@ -4,6 +4,7 @@
 #include <algorithm>
 #include "ladderc.h"
 #include "world.h"
+#include "inputmanager.h"
 
 void PlayerC::init() {
 
@@ -26,34 +27,23 @@ void PlayerC::try_use_ladder(bool isDown) {
     }
 }
 
-void PlayerC::update(sf::Event& event) {
+void PlayerC::update() {
+    auto& input = InputManager::get_instance();
+    auto& world = World::get_instance();
     auto dx = 0;
     auto dy = 0;
-    if (event.type == sf::Event::KeyPressed) {
-        switch (event.key.code) {
-            case sf::Keyboard::Up:
-                dy = -1;
-                break;
-            case sf::Keyboard::Left:
-                dx = -1;
-                break;
-            case sf::Keyboard::Down:
-                dy = 1;
-                break;
-            case sf::Keyboard::Right:
-                dx = 1;
-                break;
-            case sf::Keyboard::Period:
-                if (!event.key.shift) break;
-                try_use_ladder(true);
-                break;
-            case sf::Keyboard::Comma:
-                if (!event.key.shift) break;
-                try_use_ladder(false);
-                break;
-            default:
-                break;
-        }
+    if (input.key_just_pressed(sf::Keyboard::Up)) {
+        dy--;
+    } else if (input.key_just_pressed(sf::Keyboard::Down)) {
+        dy++;
+    } else if (input.key_just_pressed(sf::Keyboard::Right)) {
+        dx++;
+    } else if (input.key_just_pressed(sf::Keyboard::Left)) {
+        dx--;
+    } else if (input.key_just_pressed(sf::Keyboard::Period) && input.mod_down()) {
+        try_use_ladder(true);
+    } else if (input.key_just_pressed(sf::Keyboard::Comma) && input.mod_down()) {
+        try_use_ladder(false);
     }
     this->gameobject.translate(dx, dy);
 }

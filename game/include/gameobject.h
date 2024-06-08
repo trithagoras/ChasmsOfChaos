@@ -43,7 +43,7 @@ public:
 	void translate(sf::Vector2i dpos);
 	void translate(int dx, int dy);
 	virtual void init();
-	virtual void update(sf::Event& event);
+	virtual void update();
 	virtual void draw(sf::RenderWindow& window);
 	const std::vector<GameObject*> get_collisions() const;
 

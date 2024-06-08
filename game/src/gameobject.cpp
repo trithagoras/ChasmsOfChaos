@@ -11,9 +11,9 @@ void GameObject::init() {
         component->init();
     }
 }
-void GameObject::update(sf::Event& event) {
+void GameObject::update() {
 	for (size_t i = 0; i < components.size(); ++i) {
-		components[i]->update(event);
+		components[i]->update();
 		// recheck size to avoid oob access if elements were removed
 		if (i >= components.size() - 1) break;
 	}

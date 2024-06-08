@@ -2,7 +2,6 @@
 #include <vector>
 #include "gameobject.h"
 #include <memory>
-#include <SFML/Window/Event.hpp>
 #include "floor.h"
 #include <array>
 
@@ -22,7 +21,7 @@ public:
 	static World& get_instance();
 	void init();
 	void reset();
-	void update(sf::Event& event);
+	void update();
 	void draw(sf::RenderWindow& window);
 	int get_floor_num() const {
 		return current_floor;

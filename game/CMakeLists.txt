@@ -30,7 +30,7 @@ find_package(libtcod CONFIG REQUIRED)
 
 include_directories(include)
 
-add_executable(${PROJECT_NAME} src/game.cpp src/contentprovider.cpp src/floor.cpp src/gameobject.cpp src/gameobjectfactory.cpp src/playerc.cpp src/spritefactory.cpp src/world.cpp src/ui.cpp src/soundplayer.cpp "include/spritewrapper.h")
+add_executable(${PROJECT_NAME} src/game.cpp src/contentprovider.cpp src/floor.cpp src/gameobject.cpp src/gameobjectfactory.cpp src/playerc.cpp src/spritefactory.cpp src/world.cpp src/ui.cpp src/soundplayer.cpp "include/spritewrapper.h" "include/inputmanager.h" "src/inputmanager.cpp")
 
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics sfml-audio)
 target_link_libraries(${PROJECT_NAME} PRIVATE nlohmann_json::nlohmann_json libtcod::libtcod)
