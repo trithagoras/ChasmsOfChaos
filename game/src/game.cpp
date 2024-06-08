@@ -17,7 +17,7 @@ void draw(World& world, sf::RenderWindow& window);
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(960, 720), "Legends of Kordonis I: Into the Chasms of Chaos");
-    window.setFramerateLimit(60);
+    window.setFramerateLimit(30);
     window.setView(sf::View(sf::FloatRect(0, 0, 320, 240)));
     auto debugFullScreen = false;
     auto& ui = UI::get_instance();
