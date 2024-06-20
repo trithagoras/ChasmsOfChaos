@@ -48,6 +48,10 @@ void GameObject::translate(int dx, int dy) {
 	}
 }
 
+void GameObject::destroy() {
+	this->floor->pop_gameobject(*this);
+}
+
 const std::vector<GameObject*> GameObject::get_collisions() const {
 	std::vector<GameObject*> collisions;
 	auto& allobjects = floor->get_gameobjects();

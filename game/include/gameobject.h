@@ -5,6 +5,7 @@
 #include <memory>
 #include "component.h"
 #include "spritewrapper.h"
+#include <iostream>
 
 class Floor;	// forward decl
 
@@ -18,7 +19,10 @@ protected:
 
 public:
 	GameObject() = default;
-	virtual ~GameObject() = default;
+	virtual ~GameObject() {
+		this->components.clear();
+		std::cout << "Destroying gameobject " << name << "." << std::endl;
+	}
 	const sf::Vector2i get_position() const {
 		return position;
 	}
@@ -46,6 +50,7 @@ public:
 	virtual void update();
 	virtual void draw(sf::RenderWindow& window);
 	const std::vector<GameObject*> get_collisions() const;
+	void destroy();
 
 	// have to define template methods in .h file
 	template <typename T>

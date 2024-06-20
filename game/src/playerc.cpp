@@ -5,6 +5,7 @@
 #include "ladderc.h"
 #include "world.h"
 #include "inputmanager.h"
+#include <itemc.h>
 
 void PlayerC::init() {
 
@@ -27,6 +28,23 @@ void PlayerC::try_use_ladder(bool isDown) {
     }
 }
 
+void PlayerC::try_grab_here() {
+    auto collisions = this->gameobject.get_collisions();
+    auto it = std::find_if(collisions.begin(), collisions.end(), [](GameObject* obj) {
+        auto c = obj->get_component<ItemC>();
+        return c != nullptr;
+    });
+
+    if (it != collisions.end()) {
+        std::cout << "Grabbing item!" << std::endl;
+        auto item = *it;
+        item->destroy();
+
+    } else {
+        std::cout << "You grope foolishly at the floor." << std::endl;
+    }
+}
+
 void PlayerC::update() {
     auto& input = InputManager::get_instance();
     auto& world = World::get_instance();
@@ -44,6 +62,9 @@ void PlayerC::update() {
         try_use_ladder(true);
     } else if (input.key_just_pressed(sf::Keyboard::Comma) && input.mod_down()) {
         try_use_ladder(false);
+    } else if (input.key_just_pressed(sf::Keyboard::G)) {
+        // grab item here
+        try_grab_here();
     }
     this->gameobject.translate(dx, dy);
 }
