@@ -1,17 +1,20 @@
 [
   {
+    "id": 1,
     "name": "gold coin",
     "description": "A small golden coin baring the face of Queen Alyssa on one side and the twin spires of Kordonis on the other. The other inscriptions have faded with time.",
     "spriteName": "gold coin",
-    "stackAmount":  99
+    "stackAmount": 99
   },
   {
+    "id": 2,
     "name": "empty vial",
     "description": "An empty glass vial.",
     "spriteName": "empty vial",
     "stackAmount": 99
   },
   {
+    "id": 3,
     "name": "club",
     "description": "A heavy wooden club. Good for bashing brains.",
     "spriteName": "club"

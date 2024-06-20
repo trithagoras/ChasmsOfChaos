@@ -91,7 +91,9 @@ void ContentProvider::load_items() {
 		if (i.contains("stackAmount")) {
 			stackAmount = i["stackAmount"];
 		}
+		int id = i["id"];
 		auto item = std::make_unique<Item>();
+		item->id = id;
 		item->name = name;
 		item->description = description;
 		item->spriteName = spriteName;

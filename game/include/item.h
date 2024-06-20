@@ -7,6 +7,7 @@
 /// </summary>
 class Item {
 public:
+	int id;
 	std::string name;
 	std::string description;
 	std::string spriteName;
