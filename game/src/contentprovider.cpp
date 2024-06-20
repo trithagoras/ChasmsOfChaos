@@ -87,10 +87,15 @@ void ContentProvider::load_items() {
 		std::string name = i["name"];
 		std::string description = i["description"];
 		std::string spriteName = i["spriteName"];
+		int stackAmount = 1;
+		if (i.contains("stackAmount")) {
+			stackAmount = i["stackAmount"];
+		}
 		auto item = std::make_unique<Item>();
 		item->name = name;
 		item->description = description;
 		item->spriteName = spriteName;
+		item->stackAmount = stackAmount;
 		this->items.emplace(name, std::move(item));
 	}
 }

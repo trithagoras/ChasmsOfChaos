@@ -116,5 +116,14 @@
     "y": 288,
     "width": 16,
     "height": 16
+  },
+  {
+    "name": "club",
+    "color": "0xBF7958FF",
+    "textureName": "game-tiles-transparent.png",
+    "x": 512,
+    "y": 32,
+    "width": 16,
+    "height": 16
   }
 ]

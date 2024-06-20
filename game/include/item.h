@@ -10,4 +10,5 @@ public:
 	std::string name;
 	std::string description;
 	std::string spriteName;
+	int stackAmount = 1;
 };
