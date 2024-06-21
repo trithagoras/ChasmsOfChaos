@@ -6,6 +6,7 @@
 #include "world.h"
 #include "inputmanager.h"
 #include <itemc.h>
+#include <mobc.h>
 
 void PlayerC::init() {
 
@@ -38,6 +39,9 @@ void PlayerC::try_grab_here() {
     if (it != collisions.end()) {
         std::cout << "Grabbing item!" << std::endl;
         auto item = *it;
+        // add to inventory
+        auto& inventory = gameobject.get_component<MobC>()->inventory;
+        inventory.add_item(item->get_component<ItemC>()->get_item().name, 1);   // todo: only grabbing one for now.
         item->destroy();
 
     } else {
