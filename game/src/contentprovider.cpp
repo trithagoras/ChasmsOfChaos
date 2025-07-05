@@ -42,7 +42,7 @@ void ContentProvider::load_sprites() {
 		if (!wiggly) {
 			texture = &get_texture(item["textureName"]);
 		} else {
-			auto texturename = std::vformat((std::string)item["textureName"], std::make_format_args(0));	// set wiggly texture to index 0 to initialize
+			auto texturename = (item["textureName"] + "0");
 			texture = &get_texture(texturename);
 		}
 		auto color = sf::Color(str_to_hex(item["color"]));
@@ -53,7 +53,7 @@ void ContentProvider::load_sprites() {
 }
 
 void ContentProvider::load_textures() {
-	const std::vector<std::string> textures = { "game-tiles.png", "game-tiles-transparent.png", "Player0.png", "Player1.png", "Floor.png"};
+	const std::vector<std::string> textures = { "game-tiles", "game-tiles-transparent", "Player0", "Player1", "Floor"};
 	for (const auto& s : textures) {
 		load_texture(s);
 	}
@@ -61,7 +61,7 @@ void ContentProvider::load_textures() {
 
 sf::Texture& ContentProvider::load_texture(const std::string& name) {
 	auto texture = std::make_unique<sf::Texture>();
-	if (!texture->loadFromFile(std::format("content/art/{}", name))) {
+	if (!texture->loadFromFile(std::format("content/art/{}.png", name))) {
 		std::cerr << "Failed to load texture" << std::endl;
 		throw new std::runtime_error(std::format("Failed to load texture at path: content/art/{}", name));
 	}

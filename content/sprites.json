@@ -2,7 +2,7 @@
   {
     "name": "player",
     "color": "0xFFFFFFFF",
-    "textureName": "Player{}.png",
+    "textureName": "Player",
     "x": 0,
     "y": 0,
     "width": 16,
@@ -12,7 +12,7 @@
   {
     "name": "wall",
     "color": "0xFFFFFFFF",
-    "textureName": "Floor.png",
+    "textureName": "Floor",
     "x": 16,
     "y": 112,
     "width": 16,
@@ -21,7 +21,7 @@
   {
     "name": "water",
     "color": "0xFFFFFFFF",
-    "textureName": "game-tiles.png",
+    "textureName": "game-tiles",
     "x": 128,
     "y": 80,
     "width": 16,
@@ -30,7 +30,7 @@
   {
     "name": "gold coin",
     "color": "0xFFFFFFFF",
-    "textureName": "game-tiles.png",
+    "textureName": "game-tiles",
     "x": 656,
     "y": 64,
     "width": 16,
@@ -39,7 +39,7 @@
   {
     "name": "empty vial",
     "color": "0xFFFFFFFF",
-    "textureName": "game-tiles.png",
+    "textureName": "game-tiles",
     "x": 528,
     "y": 224,
     "width": 16,
@@ -48,7 +48,7 @@
   {
     "name": "down ladder",
     "color": "0xFFFFFFFF",
-    "textureName": "game-tiles.png",
+    "textureName": "game-tiles",
     "x": 336,
     "y": 0,
     "width": 16,
@@ -57,7 +57,7 @@
   {
     "name": "up ladder",
     "color": "0xFFFFFFFF",
-    "textureName": "game-tiles.png",
+    "textureName": "game-tiles",
     "x": 336,
     "y": 16,
     "width": 16,
@@ -66,7 +66,7 @@
   {
     "name": "ladder icon",
     "color": "0xF4B41BFF",
-    "textureName": "game-tiles-transparent.png",
+    "textureName": "game-tiles-transparent",
     "x": 336,
     "y": 16,
     "width": 16,
@@ -75,7 +75,7 @@
   {
     "name": "heart icon",
     "color": "0xE6482EFF",
-    "textureName": "game-tiles-transparent.png",
+    "textureName": "game-tiles-transparent",
     "x": 672,
     "y": 160,
     "width": 16,
@@ -84,7 +84,7 @@
   {
     "name": "shield icon",
     "color": "0xCFC6B8FF",
-    "textureName": "game-tiles-transparent.png",
+    "textureName": "game-tiles-transparent",
     "x": 640,
     "y": 64,
     "width": 16,
@@ -93,7 +93,7 @@
   {
     "name": "look icon",
     "color": "0xCFC6B8FF",
-    "textureName": "game-tiles-transparent.png",
+    "textureName": "game-tiles-transparent",
     "x": 608,
     "y": 192,
     "width": 16,
@@ -102,7 +102,7 @@
   {
     "name": "exp icon",
     "color": "0x38D973FF",
-    "textureName": "game-tiles-transparent.png",
+    "textureName": "game-tiles-transparent",
     "x": 576,
     "y": 176,
     "width": 16,
@@ -111,7 +111,7 @@
   {
     "name": "mana icon",
     "color": "0x3CACD7FF",
-    "textureName": "game-tiles-transparent.png",
+    "textureName": "game-tiles-transparent",
     "x": 224,
     "y": 288,
     "width": 16,
@@ -120,7 +120,7 @@
   {
     "name": "club",
     "color": "0xBF7958FF",
-    "textureName": "game-tiles-transparent.png",
+    "textureName": "game-tiles-transparent",
     "x": 512,
     "y": 32,
     "width": 16,
